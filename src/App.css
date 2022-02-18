@@ -1,3 +1,7 @@
 .App {
   text-align: center;
 }
+
+.capitalise-first::first-letter {
+  text-transform: uppercase;
+}
