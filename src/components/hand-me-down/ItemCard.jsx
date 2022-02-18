@@ -4,7 +4,7 @@
  * ========================================================
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Card, CardContent, CardMedia, Typography,
 } from '@mui/material';
@@ -14,11 +14,15 @@ import {
  *                       Component
  * ========================================================
  */
-export default function ItemCard({ item }) {
+export default function ItemCard({ item, setChosenItem, setRoute }) {
+  // Event handler when user clicks on item card
   const handleClick = (e) => {
     e.preventDefault();
-    console.log('goes big card component');
+    // Sets chosenItem as the clicked item
+    setChosenItem(item);
+    setRoute('/item');
   };
+
   return (
     <Card sx={{ width: '130px', mx: 'auto' }} onClick={handleClick}>
       <CardContent>
