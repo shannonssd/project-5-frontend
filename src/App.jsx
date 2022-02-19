@@ -1,15 +1,25 @@
+/*
+ * ========================================================
+ *                       Imports
+ * ========================================================
+ */
 import "./App.css";
 import React from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import mainTheme from "./theme";
-import Item from "./components/hand-me-down/ItemCard";
+import ItemsPage from "./components/hand-me-down/Page";
 
+/*
+ * ========================================================
+ *                       App
+ * ========================================================
+ */
 export default function App() {
   // set view state?
   return (
     <ThemeProvider theme={mainTheme}>
       <div>
-        <Item />
+        <ItemsPage />
       </div>
     </ThemeProvider>
   );
