@@ -5,6 +5,7 @@
  */
 
 import React, { useState } from "react";
+// eslint-disable-next-line object-curly-newline
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 
 /*
@@ -29,7 +30,8 @@ export default function ItemCard({ item, setChosenItem, setRoute }) {
         </Typography>
         <CardMedia component="img" image={item.photoLink} alt="Superga shoes" />
         <Typography variant="subtitle2" color="primary.main">
-          {item.peopleInterested.length} people are interested
+          {item.peopleInterested.length}
+          people are interested
         </Typography>
       </CardContent>
     </Card>
