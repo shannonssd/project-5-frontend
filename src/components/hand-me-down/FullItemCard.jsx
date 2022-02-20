@@ -20,10 +20,13 @@ export default function FullItemCard({ chosenItem, setRoute }) {
     e.preventDefault();
     setRoute('/main');
   };
+
   return (
     <div>
       <Card sx={{ width: '230px', padding: '20px' }}>
-        <Button onClick={handleBackButton}><ArrowBackIosIcon /></Button>
+        <Button onClick={handleBackButton}>
+          <ArrowBackIosIcon />
+        </Button>
         <Typography variant="h2" color="primary.main">
           {chosenItem.name}
         </Typography>
