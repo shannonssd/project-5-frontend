@@ -6,24 +6,18 @@
 
 import React from 'react';
 import {
-  Card, CardContent, CardMedia, Typography, Button,
+  Card, CardContent, CardMedia, Typography,
 } from '@mui/material';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 /*
  * ========================================================
  *                       Component
  * ========================================================
  */
-export default function FullItemCard({ chosenItem, setRoute }) {
-  const handleBackButton = (e) => {
-    e.preventDefault();
-    setRoute('/main');
-  };
+export default function ItemDetailCard({ chosenItem }) {
   return (
     <div>
       <Card sx={{ width: '230px', padding: '20px' }}>
-        <Button onClick={handleBackButton}><ArrowBackIosIcon /></Button>
         <Typography variant="h2" color="primary.main">
           {chosenItem.name}
         </Typography>

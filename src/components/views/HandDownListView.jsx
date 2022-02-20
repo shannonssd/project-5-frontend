@@ -1,20 +1,12 @@
-/*
- * ========================================================
- *                       Imports
- * ========================================================
- */
-import React, { useState } from 'react';
-import { Grid } from '@mui/material';
-import FullItemCard from './FullItemCard';
-import ItemCard from './ItemCard';
-/*
- * ========================================================
- *                       Component
- * ========================================================
- */
+import React, { useState } from "react";
+import {
+  Grid, Box, Button, Typography,
+} from '@mui/material';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ItemCard from '../hand-me-down/ItemCard';
 
-export default function ItemsPage() {
-  const [route, setRoute] = useState('/main');
+export default function HandDownListView({ setHandDownView, setView, setChosenItem }) {
   const [items, setItems] = useState([{
     name: 'superga shoes',
     description: 'beige superga shoes, slightly scuffed on heels, washed, size 37',
@@ -38,29 +30,34 @@ export default function ItemsPage() {
   },
   ]);
 
-  const [chosenItem, setChosenItem] = useState(null);
+  const addItem = () => {
+    setHandDownView("handdownadd");
+  };
 
-  console.log('<== ItemsPage ==>', items);
+  const goBack = () => {
+    setView("home");
+  };
 
   return (
-    <>
-      {route === '/main' && (
+    <Box sx={{ width: '320px', mx: 'auto', my: '20px' }}>
+      <Typography variant="h1">HandDownListView</Typography>
+      <Button onClick={addItem}>
+        <AddCircleIcon />
+      </Button>
+      <Button onClick={goBack}>
+        <ArrowBackIosIcon />
+      </Button>
       <Grid container spacing={2}>
         {items.map((item) => (
           <Grid item xs={6}>
             <ItemCard
+              setHandDownView={setHandDownView}
               item={item}
               setChosenItem={setChosenItem}
-              setRoute={setRoute}
             />
           </Grid>
         ))}
       </Grid>
-      )}
-
-      {route === '/item' && (
-      <FullItemCard chosenItem={chosenItem} setRoute={setRoute} />
-      )}
-    </>
+    </Box>
   );
 }

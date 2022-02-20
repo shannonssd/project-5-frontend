@@ -15,6 +15,13 @@ const mainTheme = createTheme(
       },
     },
     typography: {
+      h1: {
+        fontSize: 16,
+        textTransform: 'uppercase',
+        letterSpacing: '0.02857em',
+        fontWeight: 500,
+        textAlign: 'center',
+      },
       h2: {
         fontSize: 14,
         textTransform: 'uppercase',
