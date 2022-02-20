@@ -1,1 +1,1 @@
-Rocket Academt Project 5 Frontend - Neighbourhood App
+Rocket Academy Project 5 Frontend - Neighbourhood App

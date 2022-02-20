@@ -4,10 +4,9 @@
  * ========================================================
  */
 
-import React, { useState } from 'react';
-import {
-  Card, CardContent, CardMedia, Typography,
-} from '@mui/material';
+import React, { useState } from "react";
+// eslint-disable-next-line object-curly-newline
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 
 /*
  * ========================================================
@@ -20,23 +19,18 @@ export default function ItemCard({ item, setChosenItem, setRoute }) {
     e.preventDefault();
     // Sets chosenItem as the clicked item
     setChosenItem(item);
-    setRoute('/item');
+    setRoute("/item");
   };
 
   return (
-    <Card sx={{ width: '130px', mx: 'auto' }} onClick={handleClick}>
+    <Card sx={{ width: "130px", mx: "auto" }} onClick={handleClick}>
       <CardContent>
         <Typography variant="h2" color="primary.main">
           {item.name}
         </Typography>
-        <CardMedia
-          component="img"
-          image={item.photoLink}
-          alt="Superga shoes"
-        />
+        <CardMedia component="img" image={item.photoLink} alt="Superga shoes" />
         <Typography variant="subtitle2" color="primary.main">
           {item.peopleInterested.length}
-          {' '}
           people are interested
         </Typography>
       </CardContent>
