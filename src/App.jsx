@@ -25,6 +25,7 @@ import InterestGroupListView from "./components/views/InterestGroupListView";
  *                       App
  * ========================================================
  */
+
 export default function App() {
   const [view, setView] = useState("auth");
 
