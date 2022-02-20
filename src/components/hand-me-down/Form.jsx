@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Card, CardContent, CardMedia, Typography, Button, TextField, FormControl,
+  Card, CardContent, Typography, Button, TextField, FormControl,
 } from '@mui/material';
 import axios from 'axios';
 

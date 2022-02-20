@@ -6,7 +6,7 @@ export default function HomeView({ setView }) {
   };
 
   const goHandDown = () => {
-    setView("handdownlist");
+    setView("handdown-page");
   };
 
   const goInterestGroup = () => {

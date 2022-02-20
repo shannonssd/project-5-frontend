@@ -13,13 +13,15 @@ import { Card, CardContent, CardMedia, Typography } from "@mui/material";
  *                       Component
  * ========================================================
  */
-export default function ItemCard({ item, setChosenItem, setView }) {
+export default function ItemCard({
+  item, setChosenItem, handDownView, setHandDownView,
+}) {
   // Event handler when user clicks on item card
-  const handleClick = (e) => {
-    e.preventDefault();
+  const handleClick = () => {
     // Sets chosenItem as the clicked item
+    console.log(handDownView);
     setChosenItem(item);
-    setView("handdowndetail");
+    setHandDownView("handdowndetail");
   };
 
   return (

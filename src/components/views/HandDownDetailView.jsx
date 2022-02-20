@@ -1,8 +1,13 @@
 import React, { useState } from "react";
+import {
+  Card, CardContent, CardMedia, Typography, Button,
+} from '@mui/material';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ItemDetailCard from "../hand-me-down/ItemDetailCard";
 
-export default function HandDownDetailView({ setView }) {
+export default function HandDownDetailView({ setView, chosenItem, setHandDownView }) {
   const goBack = () => {
-    setView("handdownlist");
+    setHandDownView("handdownlist");
   };
 
   const goChatRoom = () => {
@@ -11,10 +16,10 @@ export default function HandDownDetailView({ setView }) {
 
   return (
     <div>
-      <h1>HandDownDetailView</h1>
-      <button type="button" onClick={goBack}>
-        Back
-      </button>
+      <Button onClick={goBack}>
+        <ArrowBackIosIcon />
+      </Button>
+      <ItemDetailCard chosenItem={chosenItem} />
       <button type="button" onClick={goChatRoom}>
         Im interested
       </button>

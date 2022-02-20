@@ -6,8 +6,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ItemCard from '../hand-me-down/ItemCard';
 
-export default function HandDownListView({ setView }) {
-  const [chosenItem, setChosenItem] = useState(null);
+export default function HandDownListView({ setHandDownView, setView, setChosenItem }) {
   const [items, setItems] = useState([{
     name: 'superga shoes',
     description: 'beige superga shoes, slightly scuffed on heels, washed, size 37',
@@ -32,7 +31,7 @@ export default function HandDownListView({ setView }) {
   ]);
 
   const addItem = () => {
-    setView("handdownadd");
+    setHandDownView("handdownadd");
   };
 
   const goBack = () => {
@@ -52,10 +51,9 @@ export default function HandDownListView({ setView }) {
         {items.map((item) => (
           <Grid item xs={6}>
             <ItemCard
-              setView={setView}
+              setHandDownView={setHandDownView}
               item={item}
               setChosenItem={setChosenItem}
-
             />
           </Grid>
         ))}
