@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+
 /*
  * ========================================================
  *                       Imports
@@ -5,8 +7,11 @@
  */
 
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+
 // eslint-disable-next-line object-curly-newline
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import axios from "axios";
 
 /*
  * ========================================================
@@ -14,15 +19,24 @@ import { Card, CardContent, CardMedia, Typography } from "@mui/material";
  * ========================================================
  */
 export default function ItemCard({
-  item, setChosenItem, handDownView, setHandDownView,
+  item, setChosenItem,
 }) {
+  const history = useHistory();
+  console.log('<== item ==>', item);
+
   // Event handler when user clicks on item card
-  const handleClick = () => {
+  const handleClick = async () => {
+    // const query = new URLSearchParams();
+    // // item is the current targeted element in itemList from HandDownListPage.jsx
+    // query.append('itemId', item._id);
+    // const res = await axios.get
+    // (`${process.env.REACT_APP_BACKEND_URL}/hand-me-downs/show-item?${query.toString()}`);
     // Sets chosenItem as the clicked item
-    console.log(handDownView);
     setChosenItem(item);
-    setHandDownView("handdowndetail");
+    history.push('/hmd-detail');
   };
+
+  // console.log('<== chosen item ==>', chosenItem);
 
   return (
     <Card sx={{ width: "130px", mx: "auto" }} onClick={handleClick}>

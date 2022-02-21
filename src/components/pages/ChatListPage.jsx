@@ -1,17 +1,18 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
-export default function ChatListView({ setView }) {
+export default function ChatListPage() {
+  const history = useHistory;
   const goChatRoom = () => {
-    setView("chat");
+    history.push('/chat-room');
   };
-
   const goBack = () => {
-    setView("home");
+    history.push('/home');
   };
 
   return (
     <div>
-      <h1>ChatListView</h1>
+      <h1>Chat Page</h1>
       <button type="button" onClick={goChatRoom}>
         Chat Room
       </button>

@@ -4,9 +4,35 @@ import { Link } from "react-router-dom";
 function NavBar() {
   return (
     <nav>
-      <div>
-        <Link to="/">Home</Link>
-      </div>
+      <ul>
+        <li>
+          <Link to="/">User Auth</Link>
+        </li>
+        <li>
+          <Link to="/home">Home</Link>
+        </li>
+        <li>
+          <Link to="/hmd-list">Hand Me Down List</Link>
+        </li>
+        <li>
+          <Link to="/hmd-detail">Hand Me Down Detail</Link>
+        </li>
+        <li>
+          <Link to="/hmd-add">Hand Me Down Add Item</Link>
+        </li>
+        <li>
+          <Link to="/chat-all">Chat</Link>
+        </li>
+        <li>
+          <Link to="/chat-room">Chat</Link>
+        </li>
+        <li>
+          <Link to="/interest-group-list" />
+        </li>
+        <li>
+          <Link to="/interest-group-detail" />
+        </li>
+      </ul>
     </nav>
   );
 }

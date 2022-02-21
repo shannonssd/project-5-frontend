@@ -1,26 +1,29 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import {
   Grid, Box, Button, Typography,
 } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ItemCard from '../hand-me-down/ItemCard';
+import ItemCard from '../sub-components/ItemCard';
 
-export default function HandDownListView({ setHandDownView, setView, setChosenItem }) {
+export default function HandDownListPage({ setChosenItem }) {
   const [itemList, setItemList] = useState(null);
   const [loading, setLoading] = useState(true);
+  const history = useHistory();
 
   useEffect(() => {
     async function loadItemList() {
-      const data = new URLSearchParams();
-      data.append('userId', '6210d8e48c88c11c66e08ecc');
-      data.append('district', 'Bedok');
+      const query = new URLSearchParams();
+      query.append('userId', '6210d8e48c88c11c66e08ecc');
+      query.append('district', 'Bedok');
 
-      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hand-me-downs/show-all-items?${data.toString()}`);
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hand-me-downs/show-all-items?${query.toString()}`);
 
       const { itemsArr } = res.data;
-      console.log('<== res.data all items ajax ==>', itemsArr);
+      console.log('<== res.data all ==>', res.data);
+      console.log('<== res.data items array ajax ==>', itemsArr);
 
       let items = [];
       for (let i = 0; i < itemsArr.length; i += 1) {
@@ -39,16 +42,16 @@ export default function HandDownListView({ setHandDownView, setView, setChosenIt
   console.log('<== itemList ==>', itemList);
 
   const addItem = () => {
-    setHandDownView("handdownadd");
+    history.push('/hmd-add');
   };
 
   const goBack = () => {
-    setView("home");
+    history.push('/home');
   };
 
   return (
     <Box sx={{ width: '320px', mx: 'auto', my: '20px' }}>
-      <Typography variant="h1">HandDownListView</Typography>
+      <Typography variant="h1">Hand Me Downs</Typography>
       <Button onClick={addItem}>
         <AddCircleIcon />
       </Button>
@@ -61,7 +64,6 @@ export default function HandDownListView({ setHandDownView, setView, setChosenIt
          {itemList.map((item) => (
            <Grid item xs={6}>
              <ItemCard
-               setHandDownView={setHandDownView}
                item={item}
                setChosenItem={setChosenItem}
              />

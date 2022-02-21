@@ -1,13 +1,15 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import {
   CardContent, Button, TextField, Stack,
 } from '@mui/material';
 
-export default function Login({ setView }) {
+export default function Login() {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [error, setError] = useState(false);
+  const history = useHistory();
 
   // Track input changes
   const handleEmail = (e) => {
@@ -26,12 +28,19 @@ export default function Login({ setView }) {
       const data = new URLSearchParams();
       data.append('email', email);
       data.append('password', password);
-      const result = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/login?${data.toString()}`);
-      console.log('<== result from BE ==>', result.data);
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/login?${data.toString()}`);
+      console.log('<== res from BE ==>', res.data);
 
-      if (result.data.success) setView('home');
+      if (res.data.success) {
+        const {
+          userId, name, displayAddress, district,
+        } = res.data;
 
-      setView('home');
+        localStorage.setItem('userId', userId);
+        localStorage.setItem('district', district);
+        localStorage.setItem('name', name);
+        history.push('/home');
+      }
     } catch (err) {
       console.log(err);
       setError(true);
