@@ -6,7 +6,7 @@ import {
 } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ItemCard from '../hand-me-down/ItemCard';
+import ItemCard from '../sub-components/ItemCard';
 
 export default function HandDownListPage({ setChosenItem }) {
   const [itemList, setItemList] = useState(null);
@@ -21,10 +21,9 @@ export default function HandDownListPage({ setChosenItem }) {
 
       const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hand-me-downs/show-all-items?${query.toString()}`);
 
-      const { itemsArr, likedHandMeDowns } = res.data;
+      const { itemsArr } = res.data;
       console.log('<== res.data all ==>', res.data);
       console.log('<== res.data items array ajax ==>', itemsArr);
-      console.log('<== res.data likedHandMeDowns ajax ==>', likedHandMeDowns);
 
       let items = [];
       for (let i = 0; i < itemsArr.length; i += 1) {

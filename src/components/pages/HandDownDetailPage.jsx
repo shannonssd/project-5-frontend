@@ -4,7 +4,7 @@ import {
   Card, CardContent, CardMedia, Typography, Button,
 } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ItemDetailCard from "../hand-me-down/ItemDetailCard";
+import ItemDetailCard from '../sub-components/ItemDetailCard';
 
 export default function HandDownDetailPage({ chosenItem }) {
   const history = useHistory();

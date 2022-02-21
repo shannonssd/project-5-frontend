@@ -22,17 +22,21 @@ export default function ItemCard({
   item, setChosenItem,
 }) {
   const history = useHistory();
+  console.log('<== item ==>', item);
+
   // Event handler when user clicks on item card
   const handleClick = async () => {
-    const query = new URLSearchParams();
-    // item is the current targeted element in itemList from HandDownListPage.jsx
-    query.append('itemId', item._id);
-    const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hand-me-downs/show-item?${query.toString()}`);
+    // const query = new URLSearchParams();
+    // // item is the current targeted element in itemList from HandDownListPage.jsx
+    // query.append('itemId', item._id);
+    // const res = await axios.get
+    // (`${process.env.REACT_APP_BACKEND_URL}/hand-me-downs/show-item?${query.toString()}`);
     // Sets chosenItem as the clicked item
     setChosenItem(item);
-    console.log('<== item id ==>', item._id);
     history.push('/hmd-detail');
   };
+
+  // console.log('<== chosen item ==>', chosenItem);
 
   return (
     <Card sx={{ width: "130px", mx: "auto" }} onClick={handleClick}>
