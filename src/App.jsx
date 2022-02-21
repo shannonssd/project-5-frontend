@@ -24,7 +24,7 @@ import InterestGroupListView from "./components/views/InterestGroupListView";
  */
 
 export default function App() {
-  const [view, setView] = useState("handdown-page");
+  const [view, setView] = useState("auth");
 
   return (
     <ThemeProvider theme={mainTheme}>

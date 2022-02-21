@@ -19,8 +19,11 @@ export default function HandDownListView({ setHandDownView, setView, setChosenIt
 
       const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hand-me-downs/show-all-items?${data.toString()}`);
 
-      const { itemsArr } = res.data;
-      console.log('<== res.data all items ajax ==>', itemsArr);
+      const { itemsArr, likedHandMeDowns } = res.data;
+      console.log('<== res.data all ==>', res.data);
+
+      console.log('<== res.data items array ajax ==>', itemsArr);
+      console.log('<== res.data likedHandMeDowns ajax ==>', likedHandMeDowns);
 
       let items = [];
       for (let i = 0; i < itemsArr.length; i += 1) {
