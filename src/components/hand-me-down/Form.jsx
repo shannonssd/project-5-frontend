@@ -5,13 +5,13 @@ import {
 import axios from 'axios';
 
 function Form() {
-  const [name, setName] = useState(null);
+  const [itemName, setItemName] = useState(null);
   const [description, setDescription] = useState(null);
   const [condition, setCondition] = useState(null);
-  const [file, setFile] = useState();
+  const [photo, setPhoto] = useState();
 
-  const nameHandler = (e) => {
-    setName(e.target.value);
+  const itemNameHandler = (e) => {
+    setItemName(e.target.value);
   };
 
   const descriptionHandler = (e) => {
@@ -23,16 +23,16 @@ function Form() {
   };
 
   const imageHandler = (e) => {
-    setFile(e.target.files[0]);
+    setPhoto(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData();
-    data.append('name', name);
+    data.append('itemName', itemName);
     data.append('description', description);
     data.append('condition', condition);
-    data.append('file', file);
+    data.append('photo', photo);
     const result = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/hand-me-downs/add-item`, data);
     console.log('<=== axios result ===>', result.data);
   };
@@ -45,9 +45,9 @@ function Form() {
             <TextField
               fullWidth
               sx={{ my: 1 }}
-              label="Name"
+              label="itemName"
               variant="outlined"
-              onChange={nameHandler}
+              onChange={itemNameHandler}
             />
           </FormControl>
           <FormControl>
@@ -69,9 +69,9 @@ function Form() {
             />
           </FormControl>
           <FormControl>
-            <label htmlFor={file}>
+            <label htmlFor={photo}>
               Upload Image
-              <input type="file" id={file} name="file" onChange={imageHandler} accept="image/*" />
+              <input type="file" id={photo} name="photo" onChange={imageHandler} accept="image/*" />
             </label>
           </FormControl>
         </CardContent>
