@@ -6,16 +6,26 @@
  */
 import "./App.css";
 import React, { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+} from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import mainTheme from "./theme";
-// import views components
-import AuthView from "./components/views/AuthView";
-import ChatListView from "./components/views/ChatListView";
-import ChatView from "./components/views/ChatView";
-import HandDownPage from "./components/pages/HandDownPage";
-import HomeView from "./components/views/HomeView";
-import InterestGroupDetailView from "./components/views/InterestGroupDetailView";
-import InterestGroupListView from "./components/views/InterestGroupListView";
+
+// import Pages components
+import AuthPage from "./components/pages/AuthPage";
+import ChatListPage from "./components/pages/ChatListPage";
+import ChatRoomPage from "./components/pages/ChatRoomPage";
+import HandDownAddPage from "./components/pages/HandDownAddPage";
+import HandDownListPage from "./components/pages/HandDownListPage";
+import HandDownDetailPage from "./components/pages/HandDownDetailPage";
+import HomePage from "./components/pages/HomePage";
+import InterestGroupDetailPage from "./components/pages/InterestGroupDetailPage";
+import InterestGroupListPage from "./components/pages/InterestGroupListPage";
+import NavBar from "./components/others/NavBar";
 
 /*
  * ========================================================
@@ -24,39 +34,46 @@ import InterestGroupListView from "./components/views/InterestGroupListView";
  */
 
 export default function App() {
-  const [view, setView] = useState("auth");
+  const [chosenItem, setChosenItem] = useState(null);
 
   return (
-    <ThemeProvider theme={mainTheme}>
+    <Router>
       <div>
-        {view === "auth" ? (
-          <AuthView setView={setView} />
-        ) : view === "home" ? (
-          <HomeView setView={setView} />
-        ) : view === "chatlist" ? (
-          <ChatListView setView={setView} />
-        ) : view === "chat" ? (
-          <ChatView setView={setView} />
-        ) : view === "handdown-page" ? (
-          <HandDownPage setView={setView} />
-        ) : view === "interestgrouplist" ? (
-          <InterestGroupListView setView={setView} />
-        ) : view === "interestgroupdetail" ? (
-          <InterestGroupDetailView setView={setView} />
-        ) : (
-          <AuthView setView={setView} />
-        )}
+
+        <Switch>
+          <ThemeProvider theme={mainTheme}>
+            <Route exact path="/">
+              <AuthPage />
+            </Route>
+            <Route exact path="/home">
+              <HomePage />
+            </Route>
+            <Route exact path="/hmd-list">
+              <HandDownListPage setChosenItem={setChosenItem} />
+            </Route>
+            <Route exact path="/hmd-detail">
+              <HandDownDetailPage chosenItem={chosenItem} />
+            </Route>
+            <Route exact path="/hmd-add">
+              <HandDownAddPage />
+            </Route>
+            <Route exact path="/chat-all">
+              <ChatListPage />
+            </Route>
+            <Route exact path="/chat-room">
+              <ChatRoomPage />
+            </Route>
+            <Route exact path="/interest-group-list">
+              <InterestGroupListPage />
+            </Route>
+            <Route exact path="/interest-group-detail">
+              <InterestGroupDetailPage />
+            </Route>
+          </ThemeProvider>
+        </Switch>
       </div>
-    </ThemeProvider>
+
+    </Router>
+
   );
 }
-
-// auth
-// home
-// chatlist
-// chat
-// handdownlist
-// handdowndetail
-// handdownadd
-// interestgrouplist
-// interestgroupdetail

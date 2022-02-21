@@ -1,17 +1,19 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import {
   Card, CardContent, CardMedia, Typography, Button,
 } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ItemDetailCard from "../hand-me-down/ItemDetailCard";
 
-export default function HandDownDetailView({ setView, chosenItem, setHandDownView }) {
+export default function HandDownDetailPage({ chosenItem }) {
+  const history = useHistory();
   const goBack = () => {
-    setHandDownView("handdownlist");
+    history.push('/hmd-list');
   };
 
   const goChatRoom = () => {
-    setView("chat");
+    history.push('/chat');
   };
 
   return (

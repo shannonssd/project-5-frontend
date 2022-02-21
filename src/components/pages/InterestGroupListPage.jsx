@@ -1,17 +1,19 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
-export default function InterestGroupListView({ setView }) {
+export default function InterestGroupListPage() {
+  const history = useHistory();
   const goGroup = () => {
-    setView("interestgroupdetail");
+    history.push('/interest-group-detail');
   };
 
   const goBack = () => {
-    setView("home");
+    history.push('/home');
   };
 
   return (
     <div>
-      <h1>InterestGroupListView</h1>
+      <h1>InterestGroupList</h1>
       <button type="button" onClick={goGroup}>
         Sample Interest Group
       </button>

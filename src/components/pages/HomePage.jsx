@@ -1,25 +1,27 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
-export default function HomeView({ setView }) {
+export default function HomePage() {
+  const history = useHistory();
   const goChat = () => {
-    setView("chatlist");
+    history.push('/chat');
   };
 
   const goHandDown = () => {
-    setView("handdown-page");
+    history.push('/hmd-list');
   };
 
   const goInterestGroup = () => {
-    setView("interestgrouplist");
+    history.push('/interest-group-list');
   };
 
   const signOut = () => {
-    setView("auth");
+    history.push('/');
   };
 
   return (
     <div>
-      <h1>HomeView</h1>
+      <h1>Home Page</h1>
       <button type="button" onClick={signOut}>
         Sign out
       </button>
