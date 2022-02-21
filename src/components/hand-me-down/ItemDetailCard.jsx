@@ -19,13 +19,13 @@ export default function ItemDetailCard({ chosenItem }) {
     <div>
       <Card sx={{ width: '230px', padding: '20px' }}>
         <Typography variant="h2" color="primary.main">
-          {chosenItem.name}
+          {chosenItem.itemName}
         </Typography>
         <CardMedia
           component="img"
           height="194"
-          image={chosenItem.photoLink}
-          alt={chosenItem.name}
+          image={chosenItem.photo}
+          alt={chosenItem.itemName}
         />
         <CardContent>
           <Typography variant="h3" color="primary.main">
@@ -40,11 +40,11 @@ export default function ItemDetailCard({ chosenItem }) {
           <Typography variant="body1" className="capitalise-first" color="primary.main">
             {chosenItem.condition}
           </Typography>
-          <Typography variant="h3" color="primary.main">
+          {/* <Typography variant="h3" color="primary.main">
             {chosenItem.peopleInterested.length}
             {' '}
             people are interested
-          </Typography>
+          </Typography> */}
         </CardContent>
 
       </Card>

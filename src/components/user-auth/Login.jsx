@@ -23,7 +23,10 @@ export default function Login({ setView }) {
     console.log('<== backend url ==>', process.env.REACT_APP_BACKEND_URL);
     console.log('<== sending to backend ==>', { email, password });
     try {
-      const result = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/users/login`, { email, password });
+      const data = new URLSearchParams();
+      data.append('email', email);
+      data.append('password', password);
+      const result = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/login?${data.toString()}`);
       console.log('<== result from BE ==>', result.data);
 
       if (result.data.success) setView('home');
