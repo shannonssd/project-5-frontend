@@ -4,12 +4,15 @@ import axios from "axios";
 import {
   CardContent, Button, TextField, Stack,
 } from '@mui/material';
+import { loginUser, useAuthState, useAuthDispatch } from "../others/store";
 
 export default function Login() {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [error, setError] = useState(false);
   const history = useHistory();
+
+  const dispatch = useAuthDispatch();
 
   // Track input changes
   const handleEmail = (e) => {
@@ -19,28 +22,15 @@ export default function Login() {
     setPassword(e.target.value);
   };
 
-  // Send email and password to backend
   const handleClick = async (e) => {
     e.preventDefault();
-    console.log('<== backend url ==>', process.env.REACT_APP_BACKEND_URL);
-    console.log('<== sending to backend ==>', { email, password });
+    const payload = new URLSearchParams();
+    payload.append('email', email);
+    payload.append('password', password);
     try {
-      const data = new URLSearchParams();
-      data.append('email', email);
-      data.append('password', password);
-      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/login?${data.toString()}`);
-      console.log('<== res from BE ==>', res.data);
-
-      if (res.data.success) {
-        const {
-          userId, name, displayAddress, district,
-        } = res.data;
-
-        localStorage.setItem('userId', userId);
-        localStorage.setItem('district', district);
-        localStorage.setItem('name', name);
-        history.push('/home');
-      }
+      const res = await loginUser(dispatch, payload);
+      if (!res.currentUser) setError(true);
+      history.push('/home');
     } catch (err) {
       console.log(err);
       setError(true);
@@ -77,3 +67,33 @@ export default function Login() {
 
   );
 }
+
+// // Send email and password to backend
+// const handleClick = async (e) => {
+//   e.preventDefault();
+//   console.log('<== backend url ==>', process.env.REACT_APP_BACKEND_URL);
+//   console.log('<== sending to backend ==>', { email, password });
+//   try {
+//     const data = new URLSearchParams();
+//     data.append('email', email);
+//     data.append('password', password);
+//     const res = await axios.get(`${process.env.
+// REACT_APP_BACKEND_URL}/users/login?${data.toString()}`);
+//     console.log('<== res from BE ==>', res.data);
+
+//     if (res.data.success) {
+//       const {
+//         currentUser, token, payload,
+//       } = res.data;
+
+//       localStorage.setItem('currentUser', currentUser);
+//       localStorage.setItem('token', token);
+//       localStorage.setItem('payload', payload);
+
+//       history.push('/home');
+//     }
+//   } catch (err) {
+//     console.log(err);
+//     setError(true);
+//   }
+// };
