@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
@@ -27,6 +28,10 @@ export default function HandDownListPage({ setChosenItem }) {
 
       let items = [];
       for (let i = 0; i < itemsArr.length; i += 1) {
+        const sellerId = itemsArr[i]._id;
+        for (let j = 0; j < itemsArr[i].handMeDowns.length; j += 1) {
+          itemsArr[i].handMeDowns[j].sellerId = sellerId;
+        }
         const temp = itemsArr[i].handMeDowns;
         console.log('<== temp array ==>', temp);
         items = items.concat(temp);

@@ -33,6 +33,7 @@ function Form() {
     data.append('description', description);
     data.append('condition', condition);
     data.append('photo', photo);
+    data.append('userId', localStorage.getItem('userId'));
     const result = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/hand-me-downs/add-item`, data);
     console.log('<=== axios result ===>', result.data);
   };
