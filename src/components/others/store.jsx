@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
 /*
  * ========================================================
  * ========================================================
@@ -29,8 +30,10 @@ import axios from 'axios';
  * ========================================================
  * ========================================================
  */
-const currentUser = localStorage.getItem('currentUser');
-console.log('current user', currentUser);
+const userId = localStorage.getItem('userId');
+const name = localStorage.getItem('name');
+const displayAddress = localStorage.getItem('displayAddress');
+const district = localStorage.getItem('district');
 const token = localStorage.getItem('token');
 
 /*
@@ -43,8 +46,11 @@ const token = localStorage.getItem('token');
  * ========================================================
  */
 export const initialState = {
-  currentUser,
-  token: "" || token,
+  userId,
+  name,
+  displayAddress,
+  district,
+  token: '' || token,
   loading: false,
   errorMessage: null,
 };
@@ -75,14 +81,20 @@ export function AuthReducer(state, action) {
     case LOGIN_SUCCESS:
       return {
         ...state,
-        currentUser: action.payload.currentUser,
+        userId: action.payload.userId,
+        name: action.payload.name,
+        displayAddress: action.payload.displayAddress,
+        district: action.payload.district,
         token: action.payload.token,
         loading: false,
       };
     case LOGOUT:
       return {
         ...state,
-        currentUser: '',
+        userId: '',
+        name: '',
+        displayAddress: '',
+        district: '',
         token: '',
       };
     case LOGIN_ERROR:
@@ -113,7 +125,14 @@ export async function loginUser(dispatch, loginPayload) {
 
     if (res.data.success) {
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
-      localStorage.setItem('currentUser', res.data.currentUser);
+      localStorage.setItem('userId', res.data.userId);
+      localStorage.setItem('name', res.data.name);
+      localStorage.setItem(
+        'displayAddress',
+        res.data.displayAddress,
+      );
+      localStorage.setItem('district', res.data.district);
+
       localStorage.setItem('token', res.data.token);
       return res.data;
     }
@@ -123,6 +142,15 @@ export async function loginUser(dispatch, loginPayload) {
   }
 
   return dispatch({ type: LOGIN_ERROR });
+}
+
+export async function logout(dispatch) {
+  dispatch({ type: LOGOUT });
+  localStorage.removeItem('userId');
+  localStorage.removeItem('name');
+  localStorage.removeItem('displayAddress');
+  localStorage.removeItem('district');
+  localStorage.removeItem('token');
 }
 
 /*
@@ -136,28 +164,28 @@ export async function loginUser(dispatch, loginPayload) {
  */
 
 // Create context
-export const AuthStateContext = React.createContext();
-export const AuthDispatchContext = React.createContext();
+export const AuthContext = React.createContext();
+// export const AuthDispatchContext = React.createContext();
 
 // Initiate custom hooks for useContext
 
-export function useAuthState() {
-  const context = React.useContext(AuthStateContext);
+export function useAuthContext() {
+  const context = React.useContext(AuthContext);
   if (context === undefined) {
-    throw new Error('useAuthState must be used within a AuthProvider');
+    throw new Error('useAuthContext must be used within a AuthProvider');
   }
 
   return context;
 }
 
-export function useAuthDispatch() {
-  const context = React.useContext(AuthDispatchContext);
-  if (context === undefined) {
-    throw new Error('useAuthDispatch must be used within a AuthProvider');
-  }
+// export function useAuthDispatch() {
+//   const context = React.useContext(AuthDispatchContext);
+//   if (context === undefined) {
+//     throw new Error('useAuthDispatch must be used within a AuthProvider');
+//   }
 
-  return context;
-}
+//   return context;
+// }
 
 // Initiate context provider ('state management library')
 // combines providers for both Auth State and Auth Dispatch
@@ -165,10 +193,8 @@ export function AuthProvider({ children }) {
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
   return (
-    <AuthStateContext.Provider value={state}>
-      <AuthDispatchContext.Provider value={dispatch}>
-        {children}
-      </AuthDispatchContext.Provider>
-    </AuthStateContext.Provider>
+    <AuthContext.Provider value={{ state, dispatch }}>
+      {children}
+    </AuthContext.Provider>
   );
 }

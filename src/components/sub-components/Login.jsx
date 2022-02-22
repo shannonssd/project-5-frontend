@@ -4,7 +4,7 @@ import axios from "axios";
 import {
   CardContent, Button, TextField, Stack,
 } from '@mui/material';
-import { loginUser, useAuthState, useAuthDispatch } from "../others/store";
+import { loginUser, useAuthContext } from "../others/store";
 
 export default function Login() {
   const [email, setEmail] = useState(null);
@@ -12,7 +12,7 @@ export default function Login() {
   const [error, setError] = useState(false);
   const history = useHistory();
 
-  const dispatch = useAuthDispatch();
+  const { dispatch } = useAuthContext();
 
   // Track input changes
   const handleEmail = (e) => {

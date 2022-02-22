@@ -7,17 +7,23 @@ import {
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ItemCard from '../sub-components/ItemCard';
+import { useAuthContext } from "../others/store";
 
 export default function HandDownListPage({ setChosenItem }) {
   const [itemList, setItemList] = useState(null);
   const [loading, setLoading] = useState(true);
   const history = useHistory();
 
+  // authContext contains object with userId, name, displayAddress, district, token
+  const { state } = useAuthContext();
+  const { name, userId, district } = state;
+  console.log('<== auth context name ==>', name);
+
   useEffect(() => {
     async function loadItemList() {
       const query = new URLSearchParams();
-      query.append('userId', '6210d8e48c88c11c66e08ecc');
-      query.append('district', 'Bedok');
+      query.append('userId', userId);
+      query.append('district', district);
 
       const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hand-me-downs/show-all-items?${query.toString()}`);
 
@@ -39,8 +45,6 @@ export default function HandDownListPage({ setChosenItem }) {
     loadItemList();
   }, []);
 
-  console.log('<== itemList ==>', itemList);
-
   const addItem = () => {
     history.push('/hmd-add');
   };
@@ -51,7 +55,16 @@ export default function HandDownListPage({ setChosenItem }) {
 
   return (
     <Box sx={{ width: '320px', mx: 'auto', my: '20px' }}>
-      <Typography variant="h1">Hand Me Downs</Typography>
+      <Typography variant="h1">
+        Hand Me Downs in
+        {' '}
+        {district}
+      </Typography>
+      <Typography variant="h1">
+        Hi
+        {' '}
+        {name}
+      </Typography>
       <Button onClick={addItem}>
         <AddCircleIcon />
       </Button>
