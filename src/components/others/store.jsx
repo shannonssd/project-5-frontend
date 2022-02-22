@@ -7,31 +7,30 @@
  * ========================================================
  * ========================================================
  */
-import React, { useReducer} from 'react';
+import React, { useReducer } from 'react';
 
 /*
  * ========================================================
  * ========================================================
  *
- *             Initial State for useReducer 
+ *             Initial State for useReducer
  *
  * ========================================================
  * ========================================================
  */
 export const initialState = {
-  
+
 };
 
 /*
  * ========================================================
  * ========================================================
  *
- *                Actions for useReducer 
+ *                Actions for useReducer
  *
  * ========================================================
  * ========================================================
  */
-
 
 /*
  * ========================================================
@@ -43,7 +42,7 @@ export const initialState = {
  * ========================================================
  */
 export function neighbourhoodReducer(state, action) {
-  
+
 }
 
 /*
@@ -56,12 +55,11 @@ export function neighbourhoodReducer(state, action) {
  * ========================================================
  */
 
-
 /*
  * ========================================================
  * ========================================================
  *
- *               Provide Code for useContext
+ *               Provider Code for useContext
  *
  * ========================================================
  * ========================================================
@@ -70,11 +68,11 @@ export const NeighbourhoodContext = React.createContext(null);
 
 const { Provider } = NeighbourhoodContext;
 
-export const NeighbourhoodProvider = function ({children}) {
- const [store, dispatch] = useReducer(neighbourhoodReducer, initialState);
+export const NeighbourhoodProvider = function ({ children }) {
+  const [store, dispatch] = useReducer(neighbourhoodReducer, initialState);
   return (
-  <Provider value={{store, dispatch}}>
-    {children}
-  </Provider>
+    <Provider value={{ store, dispatch }}>
+      {children}
+    </Provider>
   );
-}
+};

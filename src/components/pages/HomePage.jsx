@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 export default function HomePage() {
   const history = useHistory();
   const goChat = () => {
-    history.push('/chat');
+    history.push('/chat-list');
   };
 
   const goHandDown = () => {

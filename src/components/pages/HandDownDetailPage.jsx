@@ -13,7 +13,7 @@ export default function HandDownDetailPage({ chosenItem }) {
   };
 
   const goChatRoom = () => {
-    history.push('/chat');
+    history.push('/chat-room');
   };
 
   return (

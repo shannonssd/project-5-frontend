@@ -28,10 +28,10 @@ import InterestGroupListPage from "./components/pages/InterestGroupListPage";
 import NavBar from "./components/others/NavBar";
 
 /*
- * ========================================================
- *                       App
- * ========================================================
- */
+* ========================================================
+*                       App
+* ========================================================
+*/
 
 export default function App() {
   const [chosenItem, setChosenItem] = useState(null);
@@ -39,7 +39,6 @@ export default function App() {
   return (
     <Router>
       <div>
-
         <Switch>
           <ThemeProvider theme={mainTheme}>
             <Route exact path="/">
@@ -57,7 +56,7 @@ export default function App() {
             <Route exact path="/hmd-add">
               <HandDownAddPage />
             </Route>
-            <Route exact path="/chat-all">
+            <Route exact path="/chat-list">
               <ChatListPage />
             </Route>
             <Route exact path="/chat-room">
@@ -72,8 +71,6 @@ export default function App() {
           </ThemeProvider>
         </Switch>
       </div>
-
     </Router>
-
   );
 }
