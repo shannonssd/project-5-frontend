@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
-export default function ChatListView({ setView }) {
+export default function ChatListPage() {
   const [chatList, setChatList] = useState();
+  const history = useHistory();
   const goChatRoom = () => {
-    setView("chat");
+    history.push('/chat-room');
   };
-
   const goBack = () => {
-    setView("home");
+    history.push('/home');
   };
 
   useEffect(() => {
@@ -31,7 +32,7 @@ export default function ChatListView({ setView }) {
 
   return (
     <div>
-      <h1>ChatListView</h1>
+      <h1>Chat List</h1>
       {chatList}
       <br />
       <button type="button" onClick={goBack}>

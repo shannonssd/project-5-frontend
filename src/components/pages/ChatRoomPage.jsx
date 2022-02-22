@@ -1,16 +1,18 @@
 /* eslint-disable max-len */
-/* eslint-disable react/jsx-no-useless-fragment */
 import React, { useState, useEffect } from "react";
 import io from 'socket.io-client';
+import { useHistory } from "react-router-dom";
 
-export default function ChatView({ setView }) {
+export default function ChatRoomPage() {
+  const history = useHistory();
   const [conversation, setConversation] = useState();
 
   const goBack = () => {
-    setView("chatlist");
+    history.push('/chat-list');
   };
 
-  const sendMessage = () => {
+  const goHome = () => {
+    history.push('/home');
   };
 
   useEffect(() => {
@@ -41,9 +43,12 @@ export default function ChatView({ setView }) {
 
   return (
     <div>
-      <h1>ChatView</h1>
+      <h1>Chat Room</h1>
       <button type="button" onClick={goBack}>
         Back
+      </button>
+      <button type="button" onClick={goHome}>
+        Home
       </button>
       {conversation}
       <br />

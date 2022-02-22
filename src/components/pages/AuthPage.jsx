@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import {
   Box, Tab, Tabs, Typography, Card, CardContent,
 } from '@mui/material';
-import Login from "../user-auth/Login";
+import Login from "../sub-components/Login";
 
-export default function AuthView({ setView }) {
+export default function AuthPage() {
   const [value, setValue] = useState('1');
 
   const handleChange = (event, newValue) => {
@@ -26,7 +26,7 @@ export default function AuthView({ setView }) {
 
       {value === "1"
       && (
-      <Login setView={setView} />
+      <Login />
       )}
 
       {value === "2"
