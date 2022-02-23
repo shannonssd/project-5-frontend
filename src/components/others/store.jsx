@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-constructed-context-values */
 /*
  * ========================================================
  * ========================================================
@@ -7,31 +8,28 @@
  * ========================================================
  * ========================================================
  */
-import React, { useReducer} from 'react';
+import React, { useReducer } from 'react';
+import axios from 'axios';
+import { useHistory } from "react-router-dom";
 
 /*
  * ========================================================
  * ========================================================
  *
- *             Initial State for useReducer 
+ *             Initial State for useReducer
  *
  * ========================================================
  * ========================================================
  */
 export const initialState = {
-  
+  userId: localStorage.getItem('userId'),
+  name: localStorage.getItem('name'),
+  displayAddress: localStorage.getItem('displayAddress'),
+  district: localStorage.getItem('district'),
+  token: '' || localStorage.getItem('token'),
+  loading: false,
+  errorMessage: null,
 };
-
-/*
- * ========================================================
- * ========================================================
- *
- *                Actions for useReducer 
- *
- * ========================================================
- * ========================================================
- */
-
 
 /*
  * ========================================================
@@ -42,8 +40,59 @@ export const initialState = {
  * ========================================================
  * ========================================================
  */
-export function neighbourhoodReducer(state, action) {
-  
+
+// Action Types
+const REQUEST_LOGIN = 'request login';
+const LOGIN_SUCCESS = 'login success';
+const REQUEST_SIGNUP = ' request signup';
+const LOGOUT = 'logout';
+const LOGIN_ERROR = 'login error';
+const AUTHENTICATE = 'authenticate';
+
+export function AuthReducer(state, action) {
+  switch (action.type) {
+    case REQUEST_LOGIN:
+      return {
+        ...state,
+        loading: true,
+      };
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        userId: action.payload.userId,
+        name: action.payload.name,
+        displayAddress: action.payload.displayAddress,
+        district: action.payload.district,
+        token: action.payload.token,
+        loading: false,
+      };
+    case REQUEST_SIGNUP:
+      return {
+        ...state,
+        loading: true,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        userId: '',
+        name: '',
+        displayAddress: '',
+        district: '',
+        token: '',
+      };
+    case LOGIN_ERROR:
+      return {
+        ...state,
+        loading: false,
+        errorMessage: action.error,
+      };
+    case AUTHENTICATE:
+      return {
+        ...state,
+      };
+    default:
+      throw new Error(`Unhandled action type: ${action.type}`);
+  }
 }
 
 /*
@@ -56,25 +105,93 @@ export function neighbourhoodReducer(state, action) {
  * ========================================================
  */
 
+export async function loginUser(dispatch, loginPayload) {
+  try {
+    dispatch({ type: REQUEST_LOGIN });
+    const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/login?${loginPayload.toString()}`);
+
+    if (res.data.success) {
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+      localStorage.setItem('userId', res.data.userId);
+      localStorage.setItem('name', res.data.name);
+      localStorage.setItem(
+        'displayAddress',
+        res.data.displayAddress,
+      );
+      localStorage.setItem('district', res.data.district);
+
+      localStorage.setItem('token', res.data.token);
+      return res.data;
+    }
+    dispatch({ type: LOGIN_ERROR, error: res.data.errors[0] });
+  } catch (error) {
+    dispatch({ type: LOGIN_ERROR, error });
+  }
+
+  return dispatch({ type: LOGIN_ERROR });
+}
+
+export async function signupUser(dispatch, signupPayload) {
+  dispatch({ type: REQUEST_SIGNUP });
+  console.log('<== sign up dispatched ==>');
+  const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/users/signup`, signupPayload);
+  return res;
+}
+
+export async function logout(dispatch) {
+  dispatch({ type: LOGOUT });
+  localStorage.removeItem('userId');
+  localStorage.removeItem('name');
+  localStorage.removeItem('displayAddress');
+  localStorage.removeItem('district');
+  localStorage.removeItem('token');
+}
+
+export async function authenticateUser(dispatch) {
+  dispatch({ type: AUTHENTICATE });
+  const history = useHistory();
+  const token = localStorage.getItem('token');
+  if (!token) {
+    alert('Something went wrong, please sign in again');
+    history.push('/');
+  }
+  const config = { headers: { authorization: `Bearer ${token}` } };
+  return config;
+}
 
 /*
  * ========================================================
  * ========================================================
  *
- *               Provide Code for useContext
+ *               Provider Code for useContext
  *
  * ========================================================
  * ========================================================
  */
-export const NeighbourhoodContext = React.createContext(null);
 
-const { Provider } = NeighbourhoodContext;
+// Create context
+export const AuthContext = React.createContext();
+// export const AuthDispatchContext = React.createContext();
 
-export const NeighbourhoodProvider = function ({children}) {
- const [store, dispatch] = useReducer(neighbourhoodReducer, initialState);
+// Initiate custom hooks for useContext
+
+export function useAuthContext() {
+  const context = React.useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error('useAuthContext must be used within a AuthProvider');
+  }
+
+  return context;
+}
+
+// Initiate context provider ('state management library')
+// combines providers for both Auth State and Auth Dispatch
+export function AuthProvider({ children }) {
+  const [state, dispatch] = useReducer(AuthReducer, initialState);
+
   return (
-  <Provider value={{store, dispatch}}>
-    {children}
-  </Provider>
+    <AuthContext.Provider value={{ state, dispatch }}>
+      {children}
+    </AuthContext.Provider>
   );
 }
