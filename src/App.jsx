@@ -15,6 +15,8 @@ import {
 import { ThemeProvider } from "@mui/material/styles";
 import mainTheme from "./theme";
 
+import { AuthProvider } from "./components/others/store";
+
 // import Pages components
 import AuthPage from "./components/pages/AuthPage";
 import ChatListPage from "./components/pages/ChatListPage";
@@ -41,33 +43,35 @@ export default function App() {
       <div>
         <Switch>
           <ThemeProvider theme={mainTheme}>
-            <Route exact path="/">
-              <AuthPage />
-            </Route>
-            <Route exact path="/home">
-              <HomePage />
-            </Route>
-            <Route exact path="/hmd-list">
-              <HandDownListPage setChosenItem={setChosenItem} />
-            </Route>
-            <Route exact path="/hmd-detail">
-              <HandDownDetailPage chosenItem={chosenItem} />
-            </Route>
-            <Route exact path="/hmd-add">
-              <HandDownAddPage />
-            </Route>
-            <Route exact path="/chat-list">
-              <ChatListPage />
-            </Route>
-            <Route exact path="/chat-room">
-              <ChatRoomPage />
-            </Route>
-            <Route exact path="/interest-group-list">
-              <InterestGroupListPage />
-            </Route>
-            <Route exact path="/interest-group-detail">
-              <InterestGroupDetailPage />
-            </Route>
+            <AuthProvider>
+              <Route exact path="/">
+                <AuthPage />
+              </Route>
+              <Route exact path="/home">
+                <HomePage />
+              </Route>
+              <Route exact path="/hmd-list">
+                <HandDownListPage setChosenItem={setChosenItem} />
+              </Route>
+              <Route exact path="/hmd-detail">
+                <HandDownDetailPage chosenItem={chosenItem} />
+              </Route>
+              <Route exact path="/hmd-add">
+                <HandDownAddPage />
+              </Route>
+              <Route exact path="/chat-list">
+                <ChatListPage />
+              </Route>
+              <Route exact path="/chat-room">
+                <ChatRoomPage />
+              </Route>
+              <Route exact path="/interest-group-list">
+                <InterestGroupListPage />
+              </Route>
+              <Route exact path="/interest-group-detail">
+                <InterestGroupDetailPage />
+              </Route>
+            </AuthProvider>
           </ThemeProvider>
         </Switch>
       </div>
