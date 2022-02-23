@@ -13,7 +13,7 @@ export default function AuthPage() {
   };
 
   return (
-    <Card sx={{ width: "280px", mx: "auto" }}>
+    <Card sx={{ width: "280px", height: "370px", mx: "auto" }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs
           value={value}

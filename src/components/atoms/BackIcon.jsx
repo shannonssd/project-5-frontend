@@ -2,12 +2,17 @@ import React from 'react';
 import {
   Button,
 } from '@mui/material';
-import { styled } from '@mui/material/styles';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
-function BackIcon(props) {
+function BackIcon({ onClick }) {
   return (
-    <div />
+    <div>
+      <Button onClick={onClick}>
+        <ArrowBackIosIcon />
+        {' '}
+        Back
+      </Button>
+    </div>
   );
 }
 

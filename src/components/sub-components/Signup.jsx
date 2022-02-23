@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import {
-  CardContent, Button, TextField, Stack, Typography, FormControl,
+  CardContent, Button, TextField, Stack, Typography, FormControl, MobileStepper,
 } from '@mui/material';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import PersonIcon from '@mui/icons-material/Person';
+import HomeIcon from '@mui/icons-material/Home';
+import PhotoIcon from '@mui/icons-material/Photo';
 import { signupUser, useAuthContext } from "../others/store";
+// import BackIcon from "../atoms/BackIcon";
 
 function Signup() {
-  const [step, setStep] = useState(1);
+  // const [step, setStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(0);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -41,23 +48,14 @@ function Signup() {
     setPhoto(e.target.files[0]);
   };
 
-  // Handle button clicks
-  const handleClick1 = (e) => {
-    e.preventDefault();
-    setStep(2);
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
-  const goBackToStep1 = (e) => {
-    e.preventDefault();
-    setStep(1);
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-  const handleClick2 = (e) => {
-    e.preventDefault();
-    setStep(3);
-  };
-  const goBackToStep2 = (e) => {
-    e.preventDefault();
-    setStep(2);
-  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = new FormData();
@@ -81,43 +79,79 @@ function Signup() {
 
   return (
     <CardContent>
-      <Stack
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-        spacing={2}
-      />
-      {step === 1 && (
-        <div>
+      {activeStep === 0 && (
+        <Stack
+          spacing={2}
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <PersonIcon />
           <TextField label="Name" variant="outlined" onChange={handleName} value={name} />
           <TextField label="E-mail" variant="outlined" onChange={handleEmail} value={email} />
           <TextField label="Password" type="password" variant="outlined" onChange={handlePassword} value={password} />
-          <Button variant="contained" onClick={handleClick1}>Next</Button>
 
-        </div>
+        </Stack>
       )}
-      {step === 2 && (
-        <div>
-          <Typography variant="h2">Address</Typography>
+      {activeStep === 1 && (
+        <Stack
+          spacing={2}
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <HomeIcon />
           <TextField label="Street" variant="outlined" onChange={handleStreet} value={street} />
           <TextField label="Block" variant="outlined" onChange={handleBlock} value={block} />
           <TextField label="PostalCode" variant="outlined" onChange={handlePostalCode} value={postalCode} />
-          <Button variant="contained" onClick={handleClick2}>Next</Button>
-          <Button variant="contained" onClick={goBackToStep1}>Back</Button>
-        </div>
+        </Stack>
       )}
-      {step === 3 && (
-        <div>
-          <FormControl>
+      {activeStep === 2 && (
+        <Stack
+          spacing={2}
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          height="232px"
+        >
+          <PhotoIcon />
+          <Typography variant="h2">Upload profile picture</Typography>
+          <FormControl sx={{
+            width: "200px", mx: "auto", textAlign: "center",
+          }}
+          >
             <label htmlFor={photo}>
-              Upload Image
               <input type="file" id={photo} name="photo" onChange={imageHandler} accept="image/*" />
             </label>
           </FormControl>
-          <Button variant="contained" onClick={handleSubmit}>Submit</Button>
-          <Button variant="contained" onClick={goBackToStep2}>Back</Button>
-        </div>
+        </Stack>
       )}
+
+      <MobileStepper
+        variant="dots"
+        steps={3}
+        position="static"
+        activeStep={activeStep}
+        sx={{ maxWidth: 230, flexGrow: 1 }}
+        nextButton={activeStep === 2 ? (
+          <Button size="small" onClick={handleSubmit}>
+            Submit
+            <KeyboardArrowRight />
+          </Button>
+        ) : (
+          <Button size="small" onClick={handleNext} disabled={activeStep === 2}>
+            Next
+            <KeyboardArrowRight />
+          </Button>
+
+        )}
+        backButton={(
+          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+            <KeyboardArrowLeft />
+            Back
+          </Button>
+      )}
+      />
     </CardContent>
   );
 }
