@@ -3,6 +3,7 @@ import {
   Box, Tab, Tabs, Typography, Card, CardContent,
 } from '@mui/material';
 import Login from "../sub-components/Login";
+import Signup from "../sub-components/Signup";
 
 export default function AuthPage() {
   const [value, setValue] = useState('1');
@@ -31,9 +32,7 @@ export default function AuthPage() {
 
       {value === "2"
       && (
-      <CardContent>
-        <Typography variant="h1"> Sign Up </Typography>
-      </CardContent>
+      <Signup />
       )}
 
     </Card>

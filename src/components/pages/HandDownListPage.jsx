@@ -15,7 +15,8 @@ export default function HandDownListPage({ setChosenItem }) {
   const [loading, setLoading] = useState(true);
   const history = useHistory();
 
-  // authContext contains object with userId, name, displayAddress, district, token
+  // authContext contains object with dispatch and state
+  // state is an object with userId, name, displayAddress, district, token
   const { state } = useAuthContext();
   const { name, userId, district } = state;
   console.log('<== auth context name ==>', name);

@@ -41,9 +41,10 @@ export default function App() {
   return (
     <Router>
       <div>
-        <Switch>
-          <ThemeProvider theme={mainTheme}>
-            <AuthProvider>
+
+        <ThemeProvider theme={mainTheme}>
+          <AuthProvider>
+            <Switch>
               <Route exact path="/">
                 <AuthPage />
               </Route>
@@ -71,9 +72,10 @@ export default function App() {
               <Route exact path="/interest-group-detail">
                 <InterestGroupDetailPage />
               </Route>
-            </AuthProvider>
-          </ThemeProvider>
-        </Switch>
+            </Switch>
+          </AuthProvider>
+        </ThemeProvider>
+
       </div>
     </Router>
   );
