@@ -35,6 +35,19 @@ export default function HomePage() {
       <button type="button" onClick={goInterestGroup}>
         Interest Group
       </button>
+      <h2 id="user-name">
+        Hello
+        {' '}
+        {localStorage.getItem('name')}
+        !
+      </h2>
+      <h3 id="user-district">
+        Welcome to the
+        {' '}
+        {localStorage.getItem('district')}
+        {' '}
+        District Community App!
+      </h3>
     </div>
   );
 }

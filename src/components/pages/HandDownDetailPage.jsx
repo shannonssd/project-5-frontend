@@ -7,13 +7,14 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ItemDetailCard from '../sub-components/ItemDetailCard';
 
 export default function HandDownDetailPage({ chosenItem }) {
+  console.log('chosenItem', chosenItem);
   const history = useHistory();
   const goBack = () => {
     history.push('/hmd-list');
   };
 
-  const goChatRoom = () => {
-    history.push('/chat-room');
+  const goChatRoom = (sellerId) => {
+    history.push('/chat-room', { params: sellerId });
   };
 
   return (
@@ -22,7 +23,7 @@ export default function HandDownDetailPage({ chosenItem }) {
         <ArrowBackIosIcon />
       </Button>
       <ItemDetailCard chosenItem={chosenItem} />
-      <button type="button" onClick={goChatRoom}>
+      <button type="button" onClick={() => goChatRoom(chosenItem.sellerId)}>
         Im interested
       </button>
     </div>
