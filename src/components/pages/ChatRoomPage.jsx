@@ -5,6 +5,9 @@ import io from 'socket.io-client';
 import { useHistory, useLocation } from "react-router-dom";
 
 export default function ChatRoomPage() {
+  // Establish socket connection upon entering room
+  const socket = io.connect(`${process.env.REACT_APP_BACKEND_URL}`);
+
   const location = useLocation();
   const history = useHistory();
   const [conversation, setConversation] = useState();
@@ -34,16 +37,8 @@ export default function ChatRoomPage() {
     setConversation(messageArr);
   };
 
-  // ############################### PROBLEM ###############################
-  // ############################### PROBLEM ###############################
-  const socket = io.connect(`${process.env.REACT_APP_BACKEND_URL}`, { reconnection: false });
-  // ############################### PROBLEM ###############################
-  // ############################### PROBLEM ###############################
-
   // On page load do the following
   useEffect(() => {
-    // Establish socket connection upon entering room
-
     const data = {
       onlineUserId: userId,
       texteeId,
@@ -69,8 +64,6 @@ export default function ChatRoomPage() {
     };
   }, []);
 
-  // ############################### PROBLEM ###############################
-  // ############################### PROBLEM ###############################
   // Callback to send message to DB
   const sendInfoToDB = () => {
     // Clear input field
@@ -91,8 +84,6 @@ export default function ChatRoomPage() {
       convertMessageArrToConverastion(allMessages.allMessages);
     });
   };
-  // ############################### PROBLEM ###############################
-  // ############################### PROBLEM ###############################
 
   return (
     <div>

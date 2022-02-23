@@ -23,14 +23,19 @@ export default function HandDownListPage({ setChosenItem }) {
       const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hand-me-downs/show-all-items?${query.toString()}`);
 
       const { itemsArr } = res.data;
-      console.log('<== res.data all ==>', res.data);
       console.log('<== res.data items array ajax ==>', itemsArr);
 
       let items = [];
       for (let i = 0; i < itemsArr.length; i += 1) {
         const sellerId = itemsArr[i]._id;
+        const sellerName = itemsArr[i].userDetails.name;
+        const sellerPhoto = itemsArr[i].userDetails.photo;
+        const sellerAddress = itemsArr[i].addressDetails.displayAddress;
         for (let j = 0; j < itemsArr[i].handMeDowns.length; j += 1) {
           itemsArr[i].handMeDowns[j].sellerId = sellerId;
+          itemsArr[i].handMeDowns[j].sellerName = sellerName;
+          itemsArr[i].handMeDowns[j].sellerPhoto = sellerPhoto;
+          itemsArr[i].handMeDowns[j].sellerAddress = sellerAddress;
         }
         const temp = itemsArr[i].handMeDowns;
         console.log('<== temp array ==>', temp);
