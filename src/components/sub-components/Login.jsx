@@ -67,33 +67,3 @@ export default function Login() {
 
   );
 }
-
-// // Send email and password to backend
-// const handleClick = async (e) => {
-//   e.preventDefault();
-//   console.log('<== backend url ==>', process.env.REACT_APP_BACKEND_URL);
-//   console.log('<== sending to backend ==>', { email, password });
-//   try {
-//     const data = new URLSearchParams();
-//     data.append('email', email);
-//     data.append('password', password);
-//     const res = await axios.get(`${process.env.
-// REACT_APP_BACKEND_URL}/users/login?${data.toString()}`);
-//     console.log('<== res from BE ==>', res.data);
-
-//     if (res.data.success) {
-//       const {
-//         currentUser, token, payload,
-//       } = res.data;
-
-//       localStorage.setItem('currentUser', currentUser);
-//       localStorage.setItem('token', token);
-//       localStorage.setItem('payload', payload);
-
-//       history.push('/home');
-//     }
-//   } catch (err) {
-//     console.log(err);
-//     setError(true);
-//   }
-// };
