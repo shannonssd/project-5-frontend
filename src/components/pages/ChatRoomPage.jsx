@@ -16,7 +16,7 @@ export default function ChatRoomPage() {
   const [texteePhoto, setTexteePhoto] = useState();
   const [displayMessage, setDisplayMessage] = useState();
 
-  // Get user ids
+  // Get user ids from previous component
   const texteeId = location.state.params;
   const userId = localStorage.getItem('userId');
 
@@ -79,8 +79,7 @@ export default function ChatRoomPage() {
     socket.emit('Send message', data);
 
     // Display latest conversation once received
-    socket.on('Latest conversation ', (allMessages) => {
-      console.log(allMessages.allMessages);
+    socket.on('Latest conversation', (allMessages) => {
       convertMessageArrToConverastion(allMessages.allMessages);
     });
   };
