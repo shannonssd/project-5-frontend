@@ -28,7 +28,7 @@ import HomePage from "./components/pages/HomePage";
 import InterestGroupDetailPage from "./components/pages/InterestGroupDetailPage";
 import InterestGroupListPage from "./components/pages/InterestGroupListPage";
 import NavBar from "./components/others/NavBar";
-
+import AddInterestGroup from "./components/sub-components/AddInterestGroup";
 /*
 * ========================================================
 *                       App
@@ -67,6 +67,9 @@ export default function App() {
               </Route>
               <Route exact path="/interest-group-list">
                 <InterestGroupListPage />
+              </Route>
+              <Route exact path="/add-new-interest-group">
+                <AddInterestGroup />
               </Route>
               <Route exact path="/interest-group-detail">
                 <InterestGroupDetailPage />

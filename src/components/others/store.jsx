@@ -30,11 +30,11 @@ import axios from 'axios';
  * ========================================================
  * ========================================================
  */
-const userId = localStorage.getItem('userId');
-const name = localStorage.getItem('name');
-const displayAddress = localStorage.getItem('displayAddress');
-const district = localStorage.getItem('district');
-const token = localStorage.getItem('token');
+// const userId = localStorage.getItem('userId');
+// const name = localStorage.getItem('name');
+// const displayAddress = localStorage.getItem('displayAddress');
+// const district = localStorage.getItem('district');
+// const token = localStorage.getItem('token');
 
 /*
  * ========================================================
@@ -46,11 +46,11 @@ const token = localStorage.getItem('token');
  * ========================================================
  */
 export const initialState = {
-  userId,
-  name,
-  displayAddress,
-  district,
-  token: '' || token,
+  userId: null,
+  name: null,
+  displayAddress: null,
+  district: null,
+  token: null,
   loading: false,
   errorMessage: null,
 };
@@ -124,6 +124,7 @@ export async function loginUser(dispatch, loginPayload) {
     const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/login?${loginPayload.toString()}`);
 
     if (res.data.success) {
+      console.log('LOGIN DATA', res.data);
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
       localStorage.setItem('userId', res.data.userId);
       localStorage.setItem('name', res.data.name);
