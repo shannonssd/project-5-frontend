@@ -10,6 +10,7 @@
  */
 import React, { useReducer } from 'react';
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
 
 /*
  * ========================================================
@@ -69,8 +70,10 @@ export const initialState = {
 // Action Types
 const REQUEST_LOGIN = 'request login';
 const LOGIN_SUCCESS = 'login success';
+const REQUEST_SIGNUP = ' request signup';
 const LOGOUT = 'logout';
 const LOGIN_ERROR = 'login error';
+const AUTHENTICATE = 'authenticate';
 
 export function AuthReducer(state, action) {
   switch (action.type) {
@@ -90,6 +93,11 @@ export function AuthReducer(state, action) {
         token: action.payload.token,
         loading: false,
       };
+    case REQUEST_SIGNUP:
+      return {
+        ...state,
+        loading: true,
+      };
     case LOGOUT:
       return {
         ...state,
@@ -104,6 +112,10 @@ export function AuthReducer(state, action) {
         ...state,
         loading: false,
         errorMessage: action.error,
+      };
+    case AUTHENTICATE:
+      return {
+        ...state,
       };
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
@@ -147,6 +159,13 @@ export async function loginUser(dispatch, loginPayload) {
   return dispatch({ type: LOGIN_ERROR });
 }
 
+export async function signupUser(dispatch, signupPayload) {
+  dispatch({ type: REQUEST_SIGNUP });
+  console.log('<== sign up dispatched ==>');
+  const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/users/signup`, signupPayload);
+  return res;
+}
+
 export async function logout(dispatch) {
   dispatch({ type: LOGOUT });
   localStorage.removeItem('userId');
@@ -154,6 +173,18 @@ export async function logout(dispatch) {
   localStorage.removeItem('displayAddress');
   localStorage.removeItem('district');
   localStorage.removeItem('token');
+}
+
+export async function authenticateUser(dispatch) {
+  dispatch({ type: AUTHENTICATE });
+  const history = useHistory();
+  const token = localStorage.getItem('token');
+  if (!token) {
+    alert('Something went wrong, please sign in again');
+    history.push('/');
+  }
+  const config = { headers: { authorization: `Bearer ${token}` } };
+  return config;
 }
 
 /*
@@ -180,15 +211,6 @@ export function useAuthContext() {
 
   return context;
 }
-
-// export function useAuthDispatch() {
-//   const context = React.useContext(AuthDispatchContext);
-//   if (context === undefined) {
-//     throw new Error('useAuthDispatch must be used within a AuthProvider');
-//   }
-
-//   return context;
-// }
 
 // Initiate context provider ('state management library')
 // combines providers for both Auth State and Auth Dispatch
