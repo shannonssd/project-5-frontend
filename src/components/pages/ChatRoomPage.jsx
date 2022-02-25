@@ -80,6 +80,7 @@ export default function ChatRoomPage() {
 
     // Display latest conversation once received
     socket.on('Latest conversation', (allMessages) => {
+      console.log('MESSAGE RECEIVED');
       convertMessageArrToConverastion(allMessages.allMessages);
     });
   };

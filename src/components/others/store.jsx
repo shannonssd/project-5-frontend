@@ -16,17 +16,43 @@ import { useHistory } from "react-router-dom";
  * ========================================================
  * ========================================================
  *
+ *                Actions for useReducer
+ *
+ * ========================================================
+ * ========================================================
+ */
+
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                  Get User Details + token
+ *
+ * ========================================================
+ * ========================================================
+ */
+// const userId = localStorage.getItem('userId');
+// const name = localStorage.getItem('name');
+// const displayAddress = localStorage.getItem('displayAddress');
+// const district = localStorage.getItem('district');
+// const token = localStorage.getItem('token');
+
+/*
+ * ========================================================
+ * ========================================================
+ *
  *             Initial State for useReducer
  *
  * ========================================================
  * ========================================================
  */
 export const initialState = {
-  userId: localStorage.getItem('userId'),
-  name: localStorage.getItem('name'),
-  displayAddress: localStorage.getItem('displayAddress'),
-  district: localStorage.getItem('district'),
-  token: '' || localStorage.getItem('token'),
+  userId: null,
+  name: null,
+  photo: null,
+  displayAddress: null,
+  district: null,
+  token: null,
   loading: false,
   errorMessage: null,
 };
@@ -60,6 +86,7 @@ export function AuthReducer(state, action) {
       return {
         ...state,
         userId: action.payload.userId,
+        photo: action.payload.photo,
         name: action.payload.name,
         displayAddress: action.payload.displayAddress,
         district: action.payload.district,
@@ -111,6 +138,7 @@ export async function loginUser(dispatch, loginPayload) {
     const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/login?${loginPayload.toString()}`);
 
     if (res.data.success) {
+      console.log('LOGIN DATA', res.data);
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
       localStorage.setItem('userId', res.data.userId);
       localStorage.setItem('name', res.data.name);
@@ -119,7 +147,7 @@ export async function loginUser(dispatch, loginPayload) {
         res.data.displayAddress,
       );
       localStorage.setItem('district', res.data.district);
-
+      localStorage.setItem('photo', res.data.photo);
       localStorage.setItem('token', res.data.token);
       return res.data;
     }
