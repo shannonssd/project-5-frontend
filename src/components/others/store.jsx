@@ -91,7 +91,6 @@ export function AuthReducer(state, action) {
         displayAddress: action.payload.displayAddress,
         district: action.payload.district,
         token: action.payload.token,
-        photo: action.payload.photo,
         loading: false,
       };
     case REQUEST_SIGNUP:
