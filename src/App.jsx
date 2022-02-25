@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 /*
  * ========================================================
  *                       Imports
@@ -14,7 +13,6 @@ import {
 } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import mainTheme from "./theme";
-
 import { AuthProvider } from "./components/others/store";
 
 // import Pages components
@@ -29,6 +27,8 @@ import InterestGroupDetailPage from "./components/pages/InterestGroupDetailPage"
 import InterestGroupListPage from "./components/pages/InterestGroupListPage";
 import NavBar from "./components/others/NavBar";
 import AddInterestGroup from "./components/sub-components/AddInterestGroup";
+import InterestGroupMembersPage from './components/pages/InterestGroupMembersPage';
+
 /*
 * ========================================================
 *                       App
@@ -73,6 +73,9 @@ export default function App() {
               </Route>
               <Route exact path="/interest-group-detail">
                 <InterestGroupDetailPage />
+              </Route>
+              <Route exact path="/interest-group-members">
+                <InterestGroupMembersPage />
               </Route>
             </AuthProvider>
           </ThemeProvider>

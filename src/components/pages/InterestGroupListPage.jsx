@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable max-len */
@@ -16,21 +17,15 @@ export default function InterestGroupListPage() {
   const { userId, district } = state;
 
   const displayIntGrps = (districtInterestGroups) => {
-    console.log('interesGRPPPPPPS', districtInterestGroups);
+    console.log('districtInterestGroups', districtInterestGroups);
     const followedGrpsArr = [];
     const notFollowedGrpsArr = [];
     for (let i = 0; i < districtInterestGroups.length; i += 1) {
       let isFollowed = false;
-      console.log('jo');
       for (let j = 0; j < districtInterestGroups[i].members.length; j += 1) {
         if (districtInterestGroups[i].members[j].id === userId) {
-          console.log('hoiyah');
           isFollowed = true;
-        // followedGrpsArr.push(districtInterestGroups[i]);
         }
-      //   // else {
-      //   //   notFollowedGrpsArr.push(districtInterestGroups[i]);
-      //   // }
       }
       if (isFollowed) {
         followedGrpsArr.push(districtInterestGroups[i]);
@@ -46,20 +41,20 @@ export default function InterestGroupListPage() {
         <button type="button" onClick={() => { leaveGroup(group._id); }}>
           Leave
         </button>
-        <button type="button" onClick={goGroup}>
+        <button type="button" onClick={() => { goGroup(group); }}>
           View
         </button>
       </div>
     ));
 
-    const unfollowedList = notFollowedGrpsArr.map((group) => (
-      <div>
+    const unfollowedList = notFollowedGrpsArr.map((group, index) => (
+      <div key={index}>
         {/* <img src={group.bannerPhoto} alt="" /> */}
         <div>{group.name}</div>
         <button type="button" onClick={() => { joinGroup(group._id); }}>
           Join
         </button>
-        <button type="button" onClick={goGroup}>
+        <button type="button" onClick={() => { goGroup(group); }}>
           View
         </button>
       </div>
@@ -107,8 +102,8 @@ export default function InterestGroupListPage() {
     history.push('/home');
   };
 
-  const goGroup = () => {
-    history.push('/interest-group-detail');
+  const goGroup = (groupData) => {
+    history.push('/interest-group-detail', { params: groupData });
   };
 
   const addNewGroup = () => {

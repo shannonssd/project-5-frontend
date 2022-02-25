@@ -48,6 +48,7 @@ import axios from 'axios';
 export const initialState = {
   userId: null,
   name: null,
+  photo: null,
   displayAddress: null,
   district: null,
   token: null,
@@ -82,6 +83,7 @@ export function AuthReducer(state, action) {
       return {
         ...state,
         userId: action.payload.userId,
+        photo: action.payload.photo,
         name: action.payload.name,
         displayAddress: action.payload.displayAddress,
         district: action.payload.district,
@@ -133,7 +135,7 @@ export async function loginUser(dispatch, loginPayload) {
         res.data.displayAddress,
       );
       localStorage.setItem('district', res.data.district);
-
+      localStorage.setItem('photo', res.data.photo);
       localStorage.setItem('token', res.data.token);
       return res.data;
     }
