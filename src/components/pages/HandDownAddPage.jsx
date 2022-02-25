@@ -1,21 +1,29 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import Form from "../sub-components/Form";
+import {
+  Box, Typography, Stack,
+} from '@mui/material';
+import Form from "../organisms/Form";
+import BackIcon from "../molecules/BackIcon";
 
 export default function HandDownAddPage() {
+  const history = useHistory();
   const goBack = () => {
-    const history = useHistory();
     history.push('/hmd-list');
   };
 
   return (
-    <div>
-      <h1>Add an item</h1>
+    <div className="mobile">
+      <Stack
+        direction="row-reverse"
+      >
+        <Typography variant="h1">
+          Add an item
+        </Typography>
+        <BackIcon onClick={goBack} />
+
+      </Stack>
       <Form />
-      <button type="button" onClick={goBack}>
-        Back
-      </button>
-      <button type="button">Submit</button>
     </div>
   );
 }

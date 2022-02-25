@@ -2,15 +2,13 @@ import React from 'react';
 import {
   Button,
 } from '@mui/material';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 
 function BackIcon({ onClick }) {
   return (
     <div>
       <Button onClick={onClick}>
-        <ArrowBackIosIcon />
-        {' '}
-        Back
+        <ArrowCircleLeftIcon fontSize="large" />
       </Button>
     </div>
   );

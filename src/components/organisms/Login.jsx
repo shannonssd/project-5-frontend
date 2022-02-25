@@ -5,7 +5,6 @@ import {
   CardContent, Button, TextField, Stack,
 } from '@mui/material';
 import { loginUser, useAuthContext } from "../others/store";
-import ActionButton from "../atoms/ActionButton";
 
 export default function Login() {
   const [email, setEmail] = useState(null);
@@ -60,7 +59,7 @@ export default function Login() {
         spacing={2}
       >
         <TextField error label="E-mail" variant="outlined" onChange={handleEmail} />
-        <TextField error label="Password" type="password" variant="outlined" onChange={handlePassword} helperText="Incorrect email or password. Try again." />
+        <TextField error label="Password" type="password" variant="outlined" onChange={handlePassword} helperText="Incorrect email or password." />
       </Stack>
       )}
       <Stack

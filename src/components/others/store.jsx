@@ -26,6 +26,7 @@ export const initialState = {
   name: localStorage.getItem('name'),
   displayAddress: localStorage.getItem('displayAddress'),
   district: localStorage.getItem('district'),
+  photo: localStorage.getItem('photo'),
   token: '' || localStorage.getItem('token'),
   loading: false,
   errorMessage: null,
@@ -64,6 +65,7 @@ export function AuthReducer(state, action) {
         displayAddress: action.payload.displayAddress,
         district: action.payload.district,
         token: action.payload.token,
+        photo: action.payload.photo,
         loading: false,
       };
     case REQUEST_SIGNUP:
@@ -79,6 +81,7 @@ export function AuthReducer(state, action) {
         displayAddress: '',
         district: '',
         token: '',
+        photo: '',
       };
     case LOGIN_ERROR:
       return {
@@ -121,6 +124,7 @@ export async function loginUser(dispatch, loginPayload) {
       localStorage.setItem('district', res.data.district);
 
       localStorage.setItem('token', res.data.token);
+      localStorage.setItem('photo', res.data.photo);
       return res.data;
     }
     dispatch({ type: LOGIN_ERROR, error: res.data.errors[0] });
@@ -144,6 +148,7 @@ export async function logout(dispatch) {
   localStorage.removeItem('name');
   localStorage.removeItem('displayAddress');
   localStorage.removeItem('district');
+  localStorage.removeItem('photo');
   localStorage.removeItem('token');
 }
 

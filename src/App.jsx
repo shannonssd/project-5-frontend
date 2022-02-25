@@ -27,7 +27,7 @@ import HandDownDetailPage from "./components/pages/HandDownDetailPage";
 import HomePage from "./components/pages/HomePage";
 import InterestGroupDetailPage from "./components/pages/InterestGroupDetailPage";
 import InterestGroupListPage from "./components/pages/InterestGroupListPage";
-import NavBar from "./components/others/NavBar";
+import NavSpeedDial from "./components/organisms/NavDial";
 
 /*
 * ========================================================
@@ -44,6 +44,7 @@ export default function App() {
 
         <ThemeProvider theme={mainTheme}>
           <AuthProvider>
+            {/* <NavSpeedDial /> */}
             <Switch>
               <Route exact path="/">
                 <AuthPage />

@@ -3,6 +3,13 @@
 import React, { useState, useEffect } from "react";
 import io from 'socket.io-client';
 import { useHistory, useLocation } from "react-router-dom";
+import {
+  Avatar, Typography, Stack, IconButton, InputBase, Paper,
+} from "@mui/material";
+import SendRoundedIcon from '@mui/icons-material/SendRounded';
+import BackIcon from "../molecules/BackIcon";
+import TexterBubble from "../molecules/TexterBubble";
+import TexteeBubble from "../molecules/TexteeBubble";
 
 export default function ChatRoomPage() {
   // Establish socket connection upon entering room
@@ -21,7 +28,10 @@ export default function ChatRoomPage() {
   const userId = localStorage.getItem('userId');
 
   const goBack = () => {
-    history.push('/chat-list');
+    // Go back to previous page
+    // User could have reached chat via chat or handmedown
+    history.goBack();
+    // history.push('/chat-list');
   };
 
   const goHome = () => {
@@ -31,7 +41,7 @@ export default function ChatRoomPage() {
   const convertMessageArrToConverastion = (arr) => {
     const messageArr = arr.map((message) => (
       <div>
-        {message.senderId === userId ? <div style={{ color: "red" }}>{message.message}</div> : <div style={{ color: "blue" }}>{message.message}</div>}
+        {message.senderId === userId ? <TexterBubble text={message.message} /> : <TexteeBubble text={message.message} /> }
       </div>
     ));
     setConversation(messageArr);
@@ -85,35 +95,36 @@ export default function ChatRoomPage() {
   };
 
   return (
-    <div>
-      <h1>Chat Room</h1>
-      <button type="button" onClick={goBack}>
-        Back
-      </button>
-      <button type="button" onClick={goHome}>
-        Home
-      </button>
+    <div className="mobile">
+      <BackIcon onClick={goBack} />
+      <Stack
+        direction="row"
+        spacing={1}
+        alignItems="center"
+      >
+        <Avatar src={texteePhoto} alt={texteeName} sx={{ width: 40, height: 40 }} />
+        <Typography variant="h2">
+          {texteeName}
+        </Typography>
+      </Stack>
       <br />
+      <Stack
+        spacing={1}
+        overflow="scroll"
+        height="400px"
+      >
+        {conversation}
+      </Stack>
       <br />
-      {texteeName}
-      <br />
-      {texteeAddress}
-      <br />
-      <img src={texteePhoto} alt="Textee Photo" />
-      <br />
-      {conversation}
-      <br />
-      <input
-        type="text"
-        id="message"
-        name="message"
-        placeholder="Input Message Here!"
-        onChange={(event) => setDisplayMessage(event.target.value)}
-      />
-      <button type="submit" onClick={sendInfoToDB}>
-        Submit
-        {' '}
-      </button>
+      <Paper className="message-input">
+        <InputBase
+          sx={{ flex: 1 }}
+          onChange={(event) => setDisplayMessage(event.target.value)}
+        />
+        <IconButton onClick={sendInfoToDB}>
+          <SendRoundedIcon />
+        </IconButton>
+      </Paper>
     </div>
   );
 }

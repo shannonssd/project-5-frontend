@@ -3,12 +3,12 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import {
-  Grid, Box, Button, Typography,
+  Grid, Box, Button, Typography, Stack,
 } from '@mui/material';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ItemCard from '../sub-components/ItemCard';
+import ItemCard from '../organisms/ItemCard';
 import { useAuthContext } from "../others/store";
+import BackIcon from "../molecules/BackIcon";
+import AddIcon from "../molecules/AddIcon";
 
 export default function HandDownListPage({ setChosenItem }) {
   const [itemList, setItemList] = useState(null);
@@ -65,23 +65,23 @@ export default function HandDownListPage({ setChosenItem }) {
   };
 
   return (
-    <Box sx={{ width: '320px', mx: 'auto', my: '20px' }}>
-      <Typography variant="h1">
-        Hand Me Downs in
-        {' '}
-        {district}
-      </Typography>
-      <Typography variant="h1">
-        Hi
-        {' '}
-        {name}
-      </Typography>
-      <Button onClick={addItem}>
-        <AddCircleIcon />
-      </Button>
-      <Button onClick={goBack}>
-        <ArrowBackIosIcon />
-      </Button>
+    <div className="mobile">
+      <Stack
+        direction="row-reverse"
+        justifyContent="start"
+      >
+        <Typography variant="h1">
+          Hand Me Downs
+        </Typography>
+        <Stack
+          direction="column"
+          spacing={-1}
+        >
+          <BackIcon onClick={goBack} />
+          <AddIcon onClick={addItem} />
+        </Stack>
+      </Stack>
+
       {!loading
        && (
        <Grid container spacing={2}>
@@ -96,6 +96,6 @@ export default function HandDownListPage({ setChosenItem }) {
        </Grid>
        )}
 
-    </Box>
+    </div>
   );
 }

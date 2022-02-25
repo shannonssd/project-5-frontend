@@ -1,7 +1,11 @@
+/* eslint-disable max-len */
 /* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { Stack, Typography } from "@mui/material";
+import ChatRow from "../molecules/ChatRow";
+import BackIcon from "../molecules/BackIcon";
 
 export default function ChatListPage() {
   const [chatList, setChatList] = useState();
@@ -26,24 +30,29 @@ export default function ChatListPage() {
         // Output textee list from received data
         const uniqueTexteeIdArr = response.data.texteeData;
         const chatListArr = uniqueTexteeIdArr.map((user) => (
-          <button type="button" onClick={() => goChatRoom(user._id)}>
-            <br />
-            <div>{user.userDetails.name}</div>
-            <img src={user.userDetails.photo} alt="" />
-          </button>
+          <ChatRow
+            onClick={() => goChatRoom(user._id)}
+            texteePhoto={user.userDetails.photo}
+            texteeName={user.userDetails.name}
+          />
         ));
         setChatList(chatListArr);
       });
   }, []);
 
   return (
-    <div>
-      <h1>Chat List</h1>
+    <div className="mobile">
+      <Stack
+        spacing={1}
+        direction="row"
+        alignItems="center"
+        marginBottom={2}
+      >
+        <BackIcon onClick={goBack} />
+        <Typography variant="h1"> Chat </Typography>
+      </Stack>
       {chatList}
       <br />
-      <button type="button" onClick={goBack}>
-        Back
-      </button>
     </div>
   );
 }

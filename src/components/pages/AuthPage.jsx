@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import {
   Box, Tab, Tabs, Typography, Card, CardContent,
 } from '@mui/material';
-import Login from "../sub-components/Login";
-import Signup from "../sub-components/Signup";
+import Login from "../organisms/Login";
+import Signup from "../organisms/Signup";
 
 export default function AuthPage() {
   const [value, setValue] = useState('1');
