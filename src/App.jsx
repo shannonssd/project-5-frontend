@@ -25,8 +25,7 @@ import HandDownDetailPage from "./components/pages/HandDownDetailPage";
 import HomePage from "./components/pages/HomePage";
 import InterestGroupDetailPage from "./components/pages/InterestGroupDetailPage";
 import InterestGroupListPage from "./components/pages/InterestGroupListPage";
-import NavBar from "./components/others/NavBar";
-import AddInterestGroup from "./components/sub-components/AddInterestGroup";
+import AddInterestGroup from "./components/organisms/AddInterestGroup";
 import InterestGroupMembersPage from './components/pages/InterestGroupMembersPage';
 
 /*
@@ -43,6 +42,7 @@ export default function App() {
       <div>
         <ThemeProvider theme={mainTheme}>
           <AuthProvider>
+            {/* <NavSpeedDial /> */}
             <Switch>
               <Route exact path="/">
                 <AuthPage />

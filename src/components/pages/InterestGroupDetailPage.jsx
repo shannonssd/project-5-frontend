@@ -12,7 +12,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import axios from 'axios';
 import { useAuthContext } from "../others/store";
-import Posts from '../sub-components/Posts';
+import Posts from '../organisms/Posts';
 
 /*
  * ========================================================

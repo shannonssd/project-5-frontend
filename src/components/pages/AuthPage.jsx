@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import {
   Box, Tab, Tabs, Typography, Card, CardContent,
 } from '@mui/material';
-import Login from "../sub-components/Login";
-import Signup from "../sub-components/Signup";
+import Login from "../organisms/Login";
+import Signup from "../organisms/Signup";
 
 export default function AuthPage() {
   const [value, setValue] = useState('1');
@@ -13,7 +13,7 @@ export default function AuthPage() {
   };
 
   return (
-    <Card sx={{ width: "280px", mx: "auto" }}>
+    <Card sx={{ width: "280px", height: "370px", mx: "auto" }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs
           value={value}

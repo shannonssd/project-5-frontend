@@ -106,6 +106,7 @@ export function AuthReducer(state, action) {
         displayAddress: '',
         district: '',
         token: '',
+        photo: '',
       };
     case LOGIN_ERROR:
       return {
@@ -149,6 +150,7 @@ export async function loginUser(dispatch, loginPayload) {
       localStorage.setItem('district', res.data.district);
       localStorage.setItem('photo', res.data.photo);
       localStorage.setItem('token', res.data.token);
+      localStorage.setItem('photo', res.data.photo);
       return res.data;
     }
     dispatch({ type: LOGIN_ERROR, error: res.data.errors[0] });
@@ -172,6 +174,7 @@ export async function logout(dispatch) {
   localStorage.removeItem('name');
   localStorage.removeItem('displayAddress');
   localStorage.removeItem('district');
+  localStorage.removeItem('photo');
   localStorage.removeItem('token');
 }
 

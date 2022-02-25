@@ -38,31 +38,40 @@ export default function Login() {
   };
 
   return (
-    <CardContent>
+    <CardContent sx={{ mt: 4 }}>
+      {!error && (
+        <Stack
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          spacing={2}
+        >
+          <TextField label="E-mail" variant="outlined" onChange={handleEmail} />
+          <TextField label="Password" type="password" variant="outlined" onChange={handlePassword} />
+        </Stack>
+      )}
+
+      {error && (
       <Stack
         direction="column"
         justifyContent="center"
         alignItems="center"
         spacing={2}
       >
-        {!error && (
-        <div>
-          <TextField label="E-mail" variant="outlined" onChange={handleEmail} />
-          <TextField label="Password" type="password" variant="outlined" onChange={handlePassword} />
-        </div>
-        )}
-
-        {error && (
-          <div>
-            <TextField error label="E-mail" variant="outlined" onChange={handleEmail} />
-            <TextField error label="Password" type="password" variant="outlined" onChange={handlePassword} helperText="Incorrect email or password. Try again." />
-          </div>
-        )}
-
-        <Button variant="contained" onClick={handleClick}>
-          Log In
-        </Button>
+        <TextField error label="E-mail" variant="outlined" onChange={handleEmail} />
+        <TextField error label="Password" type="password" variant="outlined" onChange={handlePassword} helperText="Incorrect email or password." />
       </Stack>
+      )}
+      <Stack
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+        spacing={2}
+      >
+        <Button sx={{ mt: 2 }} variant="contained" onClick={handleClick}>Log In</Button>
+
+      </Stack>
+
     </CardContent>
 
   );

@@ -13,32 +13,44 @@ const mainTheme = createTheme(
       error: {
         main: '#f45636',
       },
+      dusty: {
+        main: "#BE9FB0",
+        dark: "#581845",
+      },
     },
     typography: {
       h1: {
-        fontSize: 16,
+        fontSize: 24,
         textTransform: 'uppercase',
         letterSpacing: '0.02857em',
         fontWeight: 500,
-        textAlign: 'center',
       },
       h2: {
         fontSize: 14,
         textTransform: 'uppercase',
         letterSpacing: '0.02857em',
         fontWeight: 500,
-        textAlign: 'center',
       },
       h3: {
         fontSize: 14,
-        textTransform: 'uppercase',
-        letterSpacing: '0.02857em',
         lineHeight: 1.75,
-        fontWeight: 500,
+        fontWeight: 600,
       },
       body1: {
         fontSize: 14,
         fontWeight: 400,
+      },
+      body2: {
+        fontSize: 12,
+        textTransform: 'uppercase',
+        fontWeight: 400,
+      },
+      button: {
+        fontSize: 13,
+        textTransform: 'uppercase',
+        letterSpacing: '0.07em',
+        lineHeight: 1.75,
+        fontWeight: 500,
       },
     },
     breakpoints: {

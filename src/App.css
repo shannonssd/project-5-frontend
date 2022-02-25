@@ -1,7 +1,39 @@
-.App {
-  text-align: center;
+body {
+  background-color: var(--grey-color);
+}
+:root {
+  --emphasis-color: #6d4a1a;
+  --light-color: #d5e1e7;
+  --dark-color: #51682b;
+  --grey-color: #f3f1ec;
+  --light-frosted: #e7cdb6c0;
+  --translucent: #ffffff91;
 }
 
 .capitalise-first::first-letter {
   text-transform: uppercase;
+}
+
+/* center nav bar */
+.nav-box {
+  position: fixed;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Mobile-first display box */
+.mobile {
+  width: 320px;
+  margin: 20px auto 0;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: var(--light-color);
+}
+.message-input {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 15px !important;
+  background-color: white;
+  padding: 4px 10px;
 }
