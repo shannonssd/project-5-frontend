@@ -29,6 +29,7 @@ export default function ChatListPage() {
       .then((response) => {
         // Output textee list from received data
         const uniqueTexteeIdArr = response.data.texteeData;
+        console.log("<== user ==>", uniqueTexteeIdArr);
         const chatListArr = uniqueTexteeIdArr.map((user) => (
           <ChatRow
             onClick={() => goChatRoom(user._id)}

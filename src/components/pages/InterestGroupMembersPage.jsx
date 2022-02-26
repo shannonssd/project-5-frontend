@@ -12,6 +12,9 @@
  */
 import React from 'react';
 import { useHistory, useLocation } from "react-router-dom";
+import { Stack, Typography } from '@mui/material';
+import BackIcon from '../molecules/BackIcon';
+import MemberRow from '../molecules/MemberRow';
 
 /*
  * ========================================================
@@ -30,26 +33,26 @@ export default function InterestGroupMembersPage() {
     history.push('/chat-room', { params: id });
   };
 
-  const goBack = () => {
-    history.push('/interest-group-list');
-  };
-
   // Get interest group data from previous component
   const membersArr = location.state.params;
   const membersList = membersArr.map((member) => (
-    <div>
-      <button type="button" onClick={goBack}>
-        Back
-      </button>
-      <button type="button" onClick={() => goChatRoom(member.id)}>
-        <div>{member.name}</div>
-        <img src={member.photo} alt="" />
-        <div>{member.displayAddress}</div>
-      </button>
-    </div>
+    <MemberRow photo={member.photo} name={member.name} address={member.displayAddress} onClick={() => goChatRoom(member.id)} />
+
   ));
 
   return (
-    <div>{membersList}</div>
+    <div className="mobile">
+      <Stack
+        direction="row"
+        justifyContent="start"
+        alignItems="center"
+      >
+        <BackIcon onClick={history.goBack} />
+        <Typography variant="h1">
+          Members
+        </Typography>
+      </Stack>
+      {membersList}
+    </div>
   );
 }

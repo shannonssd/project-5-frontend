@@ -1,3 +1,12 @@
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                       Imports
+ *
+ * ========================================================
+ * ========================================================
+ */
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Box from '@mui/material/Box';
@@ -11,6 +20,15 @@ import CampaignIcon from '@mui/icons-material/Campaign';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *       Component for nav drawer
+ *
+ * ========================================================
+ * ========================================================
+ */
 const history = useHistory();
 
 function FullList() {

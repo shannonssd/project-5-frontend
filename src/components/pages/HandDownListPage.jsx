@@ -3,12 +3,14 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import {
-  Grid, Box, Button, Typography, Stack,
+  Grid, Typography, Stack,
 } from '@mui/material';
 import ItemCard from '../organisms/ItemCard';
 import { useAuthContext } from "../others/store";
 import BackIcon from "../molecules/BackIcon";
-import AddIcon from "../molecules/AddIcon";
+import AddIcon from '../molecules/AddIcon';
+import NavMenu from "../organisms/NavMenu";
+import BottomBar from "../molecules/BottomBar";
 
 export default function HandDownListPage({ setChosenItem }) {
   const [itemList, setItemList] = useState(null);
@@ -59,7 +61,6 @@ export default function HandDownListPage({ setChosenItem }) {
   const addItem = () => {
     history.push('/hmd-add');
   };
-
   const goBack = () => {
     history.push('/home');
   };
@@ -69,22 +70,23 @@ export default function HandDownListPage({ setChosenItem }) {
       <Stack
         direction="row-reverse"
         justifyContent="start"
+        alignItems="center"
       >
         <Typography variant="h1">
           Hand Me Downs
         </Typography>
-        <Stack
-          direction="column"
-          spacing={-1}
-        >
-          <BackIcon onClick={goBack} />
-          <AddIcon onClick={addItem} />
-        </Stack>
+        <BackIcon onClick={goBack} />
       </Stack>
 
       {!loading
        && (
-       <Grid container spacing={2}>
+       <Grid
+         container
+         spacing={2}
+         sx={{
+           height: "470px", overflow: "scroll", mt: "10px", p: "3px",
+         }}
+       >
          {itemList.map((item) => (
            <Grid item xs={6}>
              <ItemCard
@@ -96,6 +98,10 @@ export default function HandDownListPage({ setChosenItem }) {
        </Grid>
        )}
 
+      <BottomBar>
+        <NavMenu />
+        <AddIcon onClick={addItem} />
+      </BottomBar>
     </div>
   );
 }

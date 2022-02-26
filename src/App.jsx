@@ -25,8 +25,8 @@ import HandDownDetailPage from "./components/pages/HandDownDetailPage";
 import HomePage from "./components/pages/HomePage";
 import InterestGroupDetailPage from "./components/pages/InterestGroupDetailPage";
 import InterestGroupListPage from "./components/pages/InterestGroupListPage";
-import AddInterestGroup from "./components/organisms/AddInterestGroup";
 import InterestGroupMembersPage from './components/pages/InterestGroupMembersPage';
+import InterestGroupAddPage from "./components/pages/InterestGroupAddPage";
 
 /*
 * ========================================================
@@ -69,7 +69,7 @@ export default function App() {
                 <InterestGroupListPage />
               </Route>
               <Route exact path="/add-new-interest-group">
-                <AddInterestGroup />
+                <InterestGroupAddPage />
               </Route>
               <Route exact path="/interest-group-detail">
                 <InterestGroupDetailPage />
