@@ -1,3 +1,12 @@
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                       Imports
+ *
+ * ========================================================
+ * ========================================================
+ */
 import React, { useState } from "react";
 import {
   Box, Tab, Tabs, Typography, Card, CardContent,
@@ -5,6 +14,15 @@ import {
 import Login from "../organisms/Login";
 import Signup from "../organisms/Signup";
 
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                  Component for Auth Page
+ *
+ * ========================================================
+ * ========================================================
+ */
 export default function AuthPage() {
   const [value, setValue] = useState('1');
 
@@ -13,28 +31,33 @@ export default function AuthPage() {
   };
 
   return (
-    <Card sx={{ width: "280px", height: "370px", mx: "auto" }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          centered
-        >
-          <Tab value="1" label="Log In" />
-          <Tab value="2" label="Sign Up" />
-        </Tabs>
-      </Box>
+    <div className="mobile">
+      <Card sx={{
+        width: "280px", height: "370px", mx: "auto", mt: "50px", borderRadius: "20px",
+      }}
+      >
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            centered
+          >
+            <Tab value="1" label="Log In" />
+            <Tab value="2" label="Sign Up" />
+          </Tabs>
+        </Box>
 
-      {value === "1"
+        {value === "1"
       && (
       <Login />
       )}
 
-      {value === "2"
+        {value === "2"
       && (
       <Signup />
       )}
 
-    </Card>
+      </Card>
+    </div>
   );
 }

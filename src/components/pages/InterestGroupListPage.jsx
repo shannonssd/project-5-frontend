@@ -5,7 +5,16 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import { Grid, Stack, Typography } from '@mui/material';
+import GroupRemoveIcon from '@mui/icons-material/GroupRemove';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import { useAuthContext } from "../others/store";
+import BottomBar from "../molecules/BottomBar";
+import NavMenu from "../organisms/NavMenu";
+import AddIcon from "../molecules/AddIcon";
+import BackIcon from "../molecules/BackIcon";
+import IgCard from "../organisms/IgCard";
+import IgCardContainer from "../molecules/IgCardContainer";
 
 export default function InterestGroupListPage() {
   const [followedGrps, setFollowedGrps] = useState();
@@ -34,30 +43,31 @@ export default function InterestGroupListPage() {
       }
     }
 
-    const followedList = followedGrpsArr.map((group) => (
-      <div>
-        {/* <img src={group.bannerPhoto} alt=""  /> */}
-        <div>{group.name}</div>
-        <button type="button" onClick={() => { leaveGroup(group._id); }}>
-          Leave
-        </button>
-        <button type="button" onClick={() => { goGroup(group); }}>
-          View
-        </button>
-      </div>
+    const followedList = followedGrpsArr.map((group, index) => (
+      <Grid item xs={6}>
+        <IgCard
+          key={index}
+          image={group.bannerPhoto}
+          header={group.name}
+          handleView={() => { goGroup(group); }}
+          handleButton={() => { leaveGroup(group._id); }}
+          buttonIcon={<GroupRemoveIcon />}
+        />
+      </Grid>
     ));
 
     const unfollowedList = notFollowedGrpsArr.map((group, index) => (
-      <div key={index}>
-        {/* <img src={group.bannerPhoto} alt="" /> */}
-        <div>{group.name}</div>
-        <button type="button" onClick={() => { joinGroup(group._id); }}>
-          Join
-        </button>
-        <button type="button" onClick={() => { goGroup(group); }}>
-          View
-        </button>
-      </div>
+      <Grid item xs={6}>
+        <IgCard
+          key={index}
+          image={group.bannerPhoto}
+          header={group.name}
+          handleView={() => { goGroup(group); }}
+          handleButton={() => { joinGroup(group._id); }}
+          buttonIcon={<GroupAddIcon />}
+        />
+      </Grid>
+
     ));
 
     setFollowedGrps(followedList);
@@ -111,28 +121,37 @@ export default function InterestGroupListPage() {
   };
 
   return (
-    <div>
-      <h1>Interest Groups</h1>
-      <button type="button" onClick={goBack}>
-        Back
-      </button>
-      <button type="button" onClick={addNewGroup}>
-        Add Group
-      </button>
+    <div className="mobile">
+      <Stack
+        direction="row"
+        justifyContent="start"
+        alignItems="center"
+      >
+        <BackIcon onClick={goBack} />
+        <Typography variant="h1">
+          Interest Groups
+        </Typography>
+      </Stack>
       <br />
       <br />
-
-      <div>
-        Your Interest Groups:
-        {" "}
+      <Typography variant="h2">
+        Joined
+      </Typography>
+      <div className="ig-card-container">
         {followedGrps}
       </div>
+
       <br />
-      <div>
-        Other Interest Groups:
-        {" "}
+      <Typography variant="h2">
+        Others
+      </Typography>
+      <div className="ig-card-container">
         {unfollowedGrps}
       </div>
+      <BottomBar>
+        <NavMenu />
+        <AddIcon onClick={addNewGroup} />
+      </BottomBar>
     </div>
   );
 }

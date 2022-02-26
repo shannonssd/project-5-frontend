@@ -8,8 +8,8 @@ const Row = styled('div')({
   marginLeft: -20,
   marginRight: -20,
   marginBottom: 1,
-
 });
+
 function ChatRow({ texteePhoto, texteeName, onClick }) {
   return (
     <Row onClick={onClick}>

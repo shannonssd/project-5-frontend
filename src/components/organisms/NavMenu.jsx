@@ -3,22 +3,30 @@ import { useHistory } from 'react-router-dom';
 import {
   Button, Menu, MenuItem, Divider, Stack, Typography,
 } from '@mui/material';
-
 import ChatIcon from '@mui/icons-material/Chat';
 import InterestsIcon from '@mui/icons-material/Interests';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import CampaignIcon from '@mui/icons-material/Campaign';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
+import { logout, useAuthContext } from "../others/store";
 
 function NavOptions() {
   const history = useHistory();
+  const { dispatch } = useAuthContext();
   const actions = [
     { icon: <ChatIcon />, name: 'Chat', link: "/chat-list" },
     { icon: <LocalGroceryStoreIcon />, name: 'Hand Me Down', link: "/hmd-list" },
     { icon: <InterestsIcon />, name: 'Interest Group', link: "/interest-group-list" },
     { icon: <CampaignIcon />, name: 'Notices' },
   ];
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    logout(dispatch);
+    history.push('/');
+  };
+
   return (
     <>
       {actions.map((action) => (
@@ -42,10 +50,7 @@ function NavOptions() {
       <Divider />
       <MenuItem
         key="logout"
-        onClick={(e) => {
-          e.preventDefault();
-          history.push("/logout");
-        }}
+        onClick={handleLogout}
       >
         <Stack
           direction="row"

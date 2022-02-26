@@ -9,6 +9,7 @@
  * ========================================================
  * ========================================================
  */
+import { Divider, Stack } from '@mui/material';
 import React from 'react';
 import Post from './Post';
 
@@ -27,12 +28,21 @@ export default function Posts({ posts, isFollowed }) {
   }
 
   const postsList = posts.map((post, index) => (
-    <Post key={index} post={post} isFollowed={isFollowed} />
+    <div>
+      <Post key={index} post={post} isFollowed={isFollowed} />
+      <br />
+      <Divider />
+    </div>
   ));
 
   return (
-    <div>
+    <Stack
+      direction="column"
+      spacing={2}
+      height="300px"
+      overflow="auto"
+    >
       {postsList}
-    </div>
+    </Stack>
   );
 }

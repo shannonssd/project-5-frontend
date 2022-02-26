@@ -14,26 +14,28 @@ body {
   text-transform: uppercase;
 }
 
-/* center nav bar */
-.nav-box {
-  position: fixed;
-  bottom: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
 /* Mobile-first display box */
 .mobile {
   width: 320px;
+  height: 650px;
   margin: 20px auto 0;
-  padding: 20px;
+  padding: 40px 20px;
   border-radius: 20px;
   background-color: var(--light-color);
+  position: relative;
 }
+
 .message-input {
   display: flex;
   justify-content: space-between;
   border-radius: 15px !important;
   background-color: white;
   padding: 4px 10px;
+}
+
+.ig-card-container {
+  display: flex;
+  overflow: auto;
+  width: 100%;
+  height: 250px;
 }

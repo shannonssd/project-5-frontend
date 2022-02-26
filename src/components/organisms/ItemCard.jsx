@@ -39,7 +39,7 @@ export default function ItemCard({
   // console.log('<== chosen item ==>', chosenItem);
 
   return (
-    <Card sx={{ width: "130px", mx: "auto" }} onClick={handleClick}>
+    <Card sx={{ width: "130px", mx: "auto", borderRadius: '20px' }} onClick={handleClick}>
       <CardContent>
 
         <Stack

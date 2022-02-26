@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-underscore-dangle */
 /*
  * ========================================================
@@ -11,8 +12,16 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import axios from 'axios';
+import {
+  Stack, Typography, CardMedia, IconButton, Paper, InputBase, Grid,
+} from "@mui/material";
+import SendRoundedIcon from '@mui/icons-material/SendRounded';
+import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import AdminPanelSettingsRoundedIcon from '@mui/icons-material/AdminPanelSettingsRounded';
 import { useAuthContext } from "../others/store";
 import Posts from '../organisms/Posts';
+import BackIcon from "../molecules/BackIcon";
+import MessageInput from "../molecules/MessageInput";
 
 /*
  * ========================================================
@@ -85,43 +94,75 @@ export default function InterestGroupDetailPage() {
   };
 
   return (
-    <div>
-      <button type="button" onClick={goBack}>
-        Back
-      </button>
-      <h1>{groupData.name}</h1>
-      <img src={groupData.bannerPhoto} alt="" />
-      <h3>{groupData.description}</h3>
-      <h4>
-        Created By:
-        {' '}
-        {groupData.creatorName}
-      </h4>
-      { isFollowed ? (
-        <div>
-          <button type="button" onClick={() => { showMemberList(groupData.members); }}>
-            {' '}
-            Members:
-            {' '}
-            {groupData.members.length}
-          </button>
-          <br />
-          <br />
-          <input
-            type="text"
-            id="post"
-            name="post"
-            onChange={(event) => setPost(event.target.value)}
-          />
-          <button type="submit" onClick={sendInfoToDB}>
-            Submit
-            {' '}
-          </button>
-        </div>
-      ) : <div />}
-      <br />
+    <div className="mobile">
+      <Stack
+        direction="row"
+        alignItems="center"
+      >
+        <BackIcon onClick={goBack} />
+      </Stack>
+      <CardMedia component="img" image={groupData.bannerPhoto} alt={groupData.bannerPhoto.toString()} height="130" />
+      <Typography variant="h1">{groupData.name}</Typography>
+      <Typography variant="h2">{groupData.description}</Typography>
+
+      <Grid container>
+        <Grid item xs={6}>
+          <Stack
+            direction="row"
+            spacing={1}
+            alignItems="center"
+          >
+            <IconButton diabled>
+              <AdminPanelSettingsRoundedIcon />
+            </IconButton>
+            <Stack
+              direction="column"
+              spacing={0}
+              justifyContent="flex-start"
+            >
+              <Typography variant="body1">
+                Admin
+              </Typography>
+              <Typography variant="body1">
+                {groupData.creatorName}
+              </Typography>
+            </Stack>
+          </Stack>
+        </Grid>
+        <Grid item xs={6}>
+          { isFollowed && (
+          <Stack
+            direction="row"
+            spacing={1}
+            alignItems="center"
+          >
+            <IconButton onClick={() => { showMemberList(groupData.members); }}>
+              <AccountCircleRoundedIcon />
+            </IconButton>
+            <Stack
+              direction="column"
+              spacing={0}
+              justifyContent="flex-start"
+            >
+              <Typography variant="body1">
+                Members
+              </Typography>
+              <Typography variant="body1">
+                {groupData.members.length}
+              </Typography>
+            </Stack>
+          </Stack>
+          )}
+        </Grid>
+      </Grid>
       <br />
       <Posts posts={postsArr} isFollowed={isFollowed} />
+
+      <MessageInput
+        id="post"
+        handleInput={(e) => setPost(e.target.value)}
+        handleSend={sendInfoToDB}
+      />
     </div>
   );
 }

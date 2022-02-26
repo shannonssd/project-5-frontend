@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import {
-  Card, CardContent, Typography, Button, TextField, FormControl, Input,
+  Card, CardContent, Typography, Button, TextField, FormControl, Stack,
 } from '@mui/material';
+import PhotoIcon from '@mui/icons-material/Photo';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import { useAuthContext } from "../others/store";
@@ -41,37 +42,47 @@ function AddInterestGroup() {
   };
 
   return (
-    <div>
-      <Card sx={{ width: '230px', padding: '20px' }}>
-        <CardContent>
-          <FormControl>
-            <TextField
-              fullWidth
-              sx={{ my: 1 }}
-              label="Group Name"
-              variant="outlined"
-              onChange={groupNameHandler}
-            />
-          </FormControl>
-          <FormControl>
-            <TextField
-              fullWidth
-              sx={{ my: 1 }}
-              label="Group Description"
-              variant="outlined"
-              onChange={descriptionHandler}
-            />
-          </FormControl>
-          <FormControl>
+    <Card sx={{
+      width: '230px', padding: '20px', mx: "auto", borderRadius: "20px", mt: "20px",
+    }}
+    >
+      <CardContent>
+        <FormControl fullWidth>
+          <TextField
+            sx={{ my: 1 }}
+            label="Group Name"
+            variant="outlined"
+            onChange={groupNameHandler}
+          />
+        </FormControl>
+        <FormControl fullWidth>
+          <TextField
+            sx={{ my: 1 }}
+            label="Group Description"
+            variant="outlined"
+            onChange={descriptionHandler}
+          />
+        </FormControl>
+        <Stack
+          spacing={2}
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <PhotoIcon />
+          <Typography variant="h2">Upload banner picture</Typography>
+          <FormControl sx={{
+            width: "200px", mx: "auto", textAlign: "center",
+          }}
+          >
             <label htmlFor={photo}>
-              Upload A Banner Photo
               <input type="file" id={photo} name="photo" onChange={imageHandler} accept="image/*" />
             </label>
           </FormControl>
-        </CardContent>
-        <Button variant="contained" onClick={handleSubmit}>Submit</Button>
-      </Card>
-    </div>
+          <Button variant="contained" onClick={handleSubmit}>Submit</Button>
+        </Stack>
+      </CardContent>
+    </Card>
   );
 }
 

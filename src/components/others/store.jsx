@@ -168,7 +168,7 @@ export async function signupUser(dispatch, signupPayload) {
   return res;
 }
 
-export async function logout(dispatch) {
+export function logout(dispatch) {
   dispatch({ type: LOGOUT });
   localStorage.removeItem('userId');
   localStorage.removeItem('name');

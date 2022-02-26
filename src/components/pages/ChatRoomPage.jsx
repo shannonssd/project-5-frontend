@@ -10,6 +10,7 @@ import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import BackIcon from "../molecules/BackIcon";
 import TexterBubble from "../molecules/TexterBubble";
 import TexteeBubble from "../molecules/TexteeBubble";
+import MessageInput from "../molecules/MessageInput";
 
 export default function ChatRoomPage() {
   // Establish socket connection upon entering room
@@ -117,15 +118,7 @@ export default function ChatRoomPage() {
         {conversation}
       </Stack>
       <br />
-      <Paper className="message-input">
-        <InputBase
-          sx={{ flex: 1 }}
-          onChange={(event) => setDisplayMessage(event.target.value)}
-        />
-        <IconButton onClick={sendInfoToDB}>
-          <SendRoundedIcon />
-        </IconButton>
-      </Paper>
+      <MessageInput id="message" handleInput={(e) => setDisplayMessage(e.target.value)} handleSend={sendInfoToDB} />
     </div>
   );
 }
