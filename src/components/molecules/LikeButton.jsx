@@ -13,12 +13,12 @@ const StyledRating = styled(Rating)({
   },
 });
 
-export default function LikeButton({ onClick }) {
+export default function LikeButton({ onClick, liked }) {
   return (
     <StyledRating
       name="like-button"
       onClick={onClick}
-      defaultValue={0}
+      value={liked}
       max={1}
       getLabelText={(value) => `${value === 0 ? 'not liked' : 'liked'}`}
       precision={1}

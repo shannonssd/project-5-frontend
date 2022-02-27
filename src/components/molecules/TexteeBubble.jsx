@@ -9,7 +9,7 @@ function TexteeBubble({ text }) {
         sx={{
           display: 'inline',
           borderRadius: 3,
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : 'secondary.main'),
+          bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : 'dusty.main'),
           color: (theme) => (theme.palette.mode === 'dark' ? 'grey.300' : '#fff'),
           p: 1,
           fontSize: '0.875rem',

@@ -10,12 +10,13 @@
  * ========================================================
  * ========================================================
  */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import {
-  Avatar, Divider, Grid, Stack, Typography,
+  Avatar, Divider, Grid, IconButton, Stack, Typography,
 } from '@mui/material';
-import { styled } from '@mui/system';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useAuthContext } from "../others/store";
 import LikeButton from '../molecules/LikeButton';
 
@@ -28,33 +29,40 @@ import LikeButton from '../molecules/LikeButton';
  * ========================================================
  * ========================================================
  */
-const Row = styled('div')({
-  backgroundColor: '#ffffff91',
-  padding: 10,
-  marginLeft: -20,
-  marginRight: -20,
-  marginBottom: 1,
-
-});
 
 export default function Post({ post, isFollowed }) {
+  const [likes, setLikes] = useState(0);
+  const [loading, setLoading] = useState(true);
   const { state } = useAuthContext();
   const { userId } = state;
-  console.log('CONTEXT INSIDE OF POST ', userId);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (post.likedBy !== undefined) {
+      setLikes(post.likedBy.length);
+      console.log("<== no. of likes ==>", likes); }
+    setLoading(false);
+  }, []);
+  console.log('<== outside useEffect liked by ==>', post.likedBy);
 
   const likePost = async (id) => {
+    setLoading(true);
     const data = {
       userId,
       postId: id,
     };
-    axios.post(`${process.env.REACT_APP_BACKEND_URL}/interest-group/like-post`, data).then((response) => {
-      console.log('Post liked');
-    });
+    const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/interest-group/like-post`, data);
+    console.log("<3 post liked res.data <3", res.data);
+    // setLikes(res.data.newPostsArr.length);
+    const { isRemoved } = res.data;
+    if (isRemoved) {
+      setLikes((prevLikes) => prevLikes - 1);
+    } else if (!isRemoved) {
+      setLikes((prevLikes) => prevLikes + 1);
+    }
+
+    setLoading(false);
   };
-  let likes = 0;
-  if (post.likedBy !== undefined) {
-    likes = post.likedBy.length;
-  }
 
   return (
     <div>
@@ -85,18 +93,20 @@ export default function Post({ post, isFollowed }) {
           </Stack>
         </Grid>
         <Grid item xs={2}>
-          { isFollowed ? (
+          { isFollowed && (
             <Stack
               direction="row"
               spacing={0.5}
               alignItems="center"
             >
-              <LikeButton onClick={() => { likePost(post._id); }} />
-
-              <Typography variant="body1">{likes}</Typography>
-
+              {!loading && (
+              <div>
+                <IconButton onClick={() => { likePost(post._id); }}><FavoriteIcon /></IconButton>
+                <Typography variant="body1">{likes}</Typography>
+              </div>
+              )}
             </Stack>
-          ) : <div />}
+          )}
         </Grid>
       </Grid>
 
