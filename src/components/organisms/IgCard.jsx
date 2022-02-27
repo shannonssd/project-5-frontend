@@ -16,10 +16,10 @@ export default function IgCard({
       sx={{
         width: "150px", height: "200px", my: "10px", mr: "16px", borderRadius: "20px",
       }}
-      onClick={handleView}
+
     >
 
-      <CardMedia component="img" image={image} alt={image.toString()} height="130" />
+      <CardMedia onClick={handleView} component="img" image={image} alt={image.toString()} height="130" />
 
       <Stack
         spacing={1}
