@@ -46,7 +46,7 @@ export default function UserItemCard({
   return (
     <Card
       sx={{
-        width: "150px", my: "10px", mr: "16px", borderRadius: '20px',
+        width: "150px", mx: "auto", borderRadius: '20px',
       }}
 
     >

@@ -15,13 +15,12 @@ export default function HandDownAddPage() {
   return (
     <div className="mobile">
       <Stack
-        direction="row-reverse"
+        direction="row"
       >
+        <BackIcon onClick={goBack} />
         <Typography variant="h1">
           Add an item
         </Typography>
-        <BackIcon onClick={goBack} />
-
       </Stack>
       <Form />
     </div>

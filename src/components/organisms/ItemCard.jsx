@@ -31,7 +31,7 @@ export default function ItemCard({
   };
 
   return (
-    <Card sx={{ width: "130px", mx: "auto", borderRadius: '20px' }} onClick={handleClick}>
+    <Card sx={{ width: "150px", mx: "auto", borderRadius: '20px' }} onClick={handleClick}>
       <CardContent>
 
         <Stack

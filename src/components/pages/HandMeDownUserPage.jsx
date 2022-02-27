@@ -8,14 +8,16 @@ import {
 import BackIcon from "../molecules/BackIcon";
 import { useAuthContext } from "../others/store";
 import UserItemCard from '../organisms/UserItemCard';
+import BottomBar from '../molecules/BottomBar';
+import AddIcon from '../molecules/AddIcon';
+import NavMenu from "../organisms/NavMenu";
 
 function HandMeDownUserPage({ setChosenItem }) {
   const { state } = useAuthContext();
   const { userId } = state;
-  console.log('<== auth context ==>', useAuthContext());
-  const [userItems, setUserItems] = useState([]);
-  const [likedItems, setLikedItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  console.log('<== auth context ==>', useAuthContext());
+  const [userItems, setUserItems] = useState(null);
   const history = useHistory();
 
   useEffect(() => {
@@ -24,24 +26,28 @@ function HandMeDownUserPage({ setChosenItem }) {
       query.append('userId', userId);
 
       const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hand-me-downs/show-users-items?${query.toString()}`);
-      const { itemsArr, likedHandMeDowns } = res.data;
+      const { itemsArr } = res.data;
       console.log('<== res data user items ==>', res.data);
       setUserItems(itemsArr);
-      setLikedItems(likedHandMeDowns);
       setLoading(false);
     }
     loadUserItems();
   }, []);
 
-  const userItemCards = userItems.map((item) => (
-    <Grid item xs={6}>
-      <UserItemCard
-        key={item._id}
-        item={item}
-        setChosenItem={setChosenItem}
-      />
-    </Grid>
-  ));
+  // if (!loading) {
+  //   const userItemCards = userItems.map((item) => (
+  //     <Grid item xs={6}>
+  //       <UserItemCard
+  //         key={item._id}
+  //         item={item}
+  //         setChosenItem={setChosenItem}
+  //       />
+  //     </Grid>
+  //   )); }
+
+  const addItem = () => {
+    history.push('/hmd-add');
+  };
 
   return (
     <div className="mobile">
@@ -55,13 +61,37 @@ function HandMeDownUserPage({ setChosenItem }) {
           My Collection
         </Typography>
       </Stack>
-      <Typography variant="h2">
-        My Items
-      </Typography>
-      <div className="ig-card-container">
-        {userItemCards}
-      </div>
-
+      {userItems ? (
+        <Typography variant="h2">
+          My Items
+        </Typography>
+      ) : (
+        <Typography variant="h2">
+          You have no listed items, add an item.
+        </Typography>
+      )}
+      <Grid
+        container
+        spacing={2}
+        sx={{
+          height: "500px", overflow: "scroll", mt: "10px", p: "3px",
+        }}
+      >
+        {!loading
+        && userItems.map((item) => (
+          <Grid item xs={6}>
+            <UserItemCard
+              key={item._id}
+              item={item}
+              setChosenItem={setChosenItem}
+            />
+          </Grid>
+        ))}
+      </Grid>
+      <BottomBar>
+        <NavMenu />
+        <AddIcon onClick={addItem} />
+      </BottomBar>
     </div>
   );
 }

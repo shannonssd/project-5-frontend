@@ -69,7 +69,7 @@ function Form() {
         </FormControl>
         <FormControl>
           <label htmlFor="item-photo">
-            <input style={{ display: 'none' }} type="file" id="item-photo" name="item-photo" onChange={imageHandler} accept="image/*" />
+            <input type="file" id="item-photo" name="item-photo" onChange={imageHandler} accept="image/*" />
 
             <IconButton aria-label="add photo" component="span"><AddAPhotoIcon /></IconButton>
           </label>
