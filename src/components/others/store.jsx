@@ -47,12 +47,12 @@ import { useHistory } from "react-router-dom";
  * ========================================================
  */
 export const initialState = {
-  userId: null,
-  name: null,
-  photo: null,
-  displayAddress: null,
-  district: null,
-  token: null,
+  userId: localStorage.getItem('userId'),
+  name: localStorage.getItem('name'),
+  photo: localStorage.getItem('photo'),
+  displayAddress: localStorage.getItem('displayAddress'),
+  district: localStorage.getItem('district'),
+  token: localStorage.getItem('token'),
   loading: false,
   errorMessage: null,
 };

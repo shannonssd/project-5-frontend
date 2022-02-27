@@ -26,20 +26,12 @@ export default function ItemCard({
 
   // Event handler when user clicks on item card
   const handleClick = async () => {
-    // const query = new URLSearchParams();
-    // // item is the current targeted element in itemList from HandDownListPage.jsx
-    // query.append('itemId', item._id);
-    // const res = await axios.get
-    // (`${process.env.REACT_APP_BACKEND_URL}/hand-me-downs/show-item?${query.toString()}`);
-    // Sets chosenItem as the clicked item
     setChosenItem(item);
     history.push('/hmd-detail');
   };
 
-  // console.log('<== chosen item ==>', chosenItem);
-
   return (
-    <Card sx={{ width: "130px", mx: "auto", borderRadius: '20px' }} onClick={handleClick}>
+    <Card sx={{ width: "150px", mx: "auto", borderRadius: '20px' }} onClick={handleClick}>
       <CardContent>
 
         <Stack

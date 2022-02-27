@@ -27,6 +27,7 @@ import InterestGroupDetailPage from "./components/pages/InterestGroupDetailPage"
 import InterestGroupListPage from "./components/pages/InterestGroupListPage";
 import InterestGroupMembersPage from './components/pages/InterestGroupMembersPage';
 import InterestGroupAddPage from "./components/pages/InterestGroupAddPage";
+import HandMeDownUserPage from "./components/pages/HandMeDownUserPage";
 
 /*
 * ========================================================
@@ -42,7 +43,6 @@ export default function App() {
       <div>
         <ThemeProvider theme={mainTheme}>
           <AuthProvider>
-            {/* <NavSpeedDial /> */}
             <Switch>
               <Route exact path="/">
                 <AuthPage />
@@ -58,6 +58,9 @@ export default function App() {
               </Route>
               <Route exact path="/hmd-add">
                 <HandDownAddPage />
+              </Route>
+              <Route exact path="/hmd-user">
+                <HandMeDownUserPage chosenItem={chosenItem} />
               </Route>
               <Route exact path="/chat-list">
                 <ChatListPage />

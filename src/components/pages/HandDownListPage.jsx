@@ -3,8 +3,9 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import {
-  Grid, Typography, Stack,
+  Grid, Typography, Stack, IconButton,
 } from '@mui/material';
+import FolderIcon from '@mui/icons-material/Folder';
 import ItemCard from '../organisms/ItemCard';
 import { useAuthContext } from "../others/store";
 import BackIcon from "../molecules/BackIcon";
@@ -68,14 +69,15 @@ export default function HandDownListPage({ setChosenItem }) {
   return (
     <div className="mobile">
       <Stack
-        direction="row-reverse"
+        direction="row"
         justifyContent="start"
         alignItems="center"
       >
+        <BackIcon onClick={goBack} />
         <Typography variant="h1">
           Hand Me Downs
         </Typography>
-        <BackIcon onClick={goBack} />
+
       </Stack>
 
       {!loading
@@ -100,7 +102,9 @@ export default function HandDownListPage({ setChosenItem }) {
 
       <BottomBar>
         <NavMenu />
+        <IconButton onClick={() => history.push('/hmd-user')}><FolderIcon /></IconButton>
         <AddIcon onClick={addItem} />
+
       </BottomBar>
     </div>
   );
