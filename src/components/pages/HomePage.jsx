@@ -15,8 +15,9 @@ import NavMenu from "../organisms/NavMenu";
 export default function HomePage() {
   const history = useHistory();
   const { state } = useAuthContext();
+
   const {
-    name, userId, district, photo,
+    name, district, photo,
   } = state;
   console.log('<== photo ==>', photo);
   const goChat = () => {
