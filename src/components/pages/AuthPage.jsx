@@ -9,7 +9,7 @@
  */
 import React, { useState } from "react";
 import {
-  Box, Tab, Tabs, Typography, Card, CardContent,
+  Box, Tab, Tabs, Typography, Card, CardContent, Stack,
 } from '@mui/material';
 import Login from "../organisms/Login";
 import Signup from "../organisms/Signup";
@@ -32,6 +32,9 @@ export default function AuthPage() {
 
   return (
     <div className="mobile">
+
+      <img src="images/banner.png" alt="happy blobs" />
+
       <Card sx={{
         width: "280px", height: "370px", mx: "auto", mt: "50px", borderRadius: "20px",
       }}

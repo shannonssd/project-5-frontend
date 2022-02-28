@@ -38,7 +38,12 @@ export default function HomePage() {
 
   return (
     <div className="mobile">
-      <NavMenu />
+      <Stack
+        direction="row-reverse"
+        justifyContent="flexEnd"
+      >
+        <NavMenu />
+      </Stack>
       <Stack
         direction="row-reverse"
         alignItems="center"

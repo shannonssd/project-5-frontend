@@ -5,7 +5,7 @@ const mainTheme = createTheme(
     palette: {
       type: 'light',
       primary: {
-        main: '#1d2770',
+        main: '#1F18C0',
       },
       secondary: {
         main: '#456e3f',
@@ -52,6 +52,15 @@ const mainTheme = createTheme(
         lineHeight: 1.75,
         fontWeight: 500,
       },
+      h4: {
+        fontSize: 44,
+        textTransform: 'uppercase',
+        letterSpacing: '0.02857em',
+        lineHeight: 1,
+        fontWeight: 500,
+        textAlign: 'end',
+      },
+
     },
     breakpoints: {
       values: {
