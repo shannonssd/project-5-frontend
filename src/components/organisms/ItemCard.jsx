@@ -11,7 +11,6 @@ import { useHistory } from "react-router-dom";
 
 // eslint-disable-next-line object-curly-newline
 import { Card, CardContent, CardMedia, Typography, Avatar, Stack } from "@mui/material";
-import axios from "axios";
 
 /*
  * ========================================================

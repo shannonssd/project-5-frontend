@@ -44,7 +44,7 @@ export default function HomePage() {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Avatar src={photo} alt={name} sx={{ width: 50, height: 50, mr: 2 }} />
+        <Avatar src={photo} alt={name} sx={{ width: 70, height: 70, mr: 2 }} />
         <Stack
           direction="column"
           justifyContent="start"
@@ -53,15 +53,15 @@ export default function HomePage() {
         >
           <Typography variant="h2" sx={{ color: mainTheme.palette.primary.main }}>
             Hello
-            {' '}
+            <br />
             {name}
           </Typography>
           <Typography variant="h1" sx={{ color: mainTheme.palette.primary.main }}>
+            Neighbourly
+            <br />
+            At
+            {' '}
             {district}
-            <br />
-            Community
-            <br />
-            Club
           </Typography>
           <br />
         </Stack>

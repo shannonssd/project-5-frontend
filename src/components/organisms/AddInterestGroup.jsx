@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import {
-  Card, CardContent, Typography, Button, TextField, FormControl, Stack,
+  Card, CardContent, Typography, Button, TextField, FormControl, Stack, CardActions,
 } from '@mui/material';
 import PhotoIcon from '@mui/icons-material/Photo';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { useAuthContext } from "../others/store";
+import Form from './Form';
 
 function AddInterestGroup() {
   const { state } = useAuthContext();
@@ -13,6 +15,7 @@ function AddInterestGroup() {
   const [groupName, setGroupName] = useState(null);
   const [description, setDescription] = useState(null);
   const [photo, setPhoto] = useState();
+  const [photoCaption, setPhotoCaption] = useState('No files uploaded');
   const history = useHistory();
 
   const groupNameHandler = (e) => {
@@ -25,6 +28,13 @@ function AddInterestGroup() {
 
   const imageHandler = (e) => {
     setPhoto(e.target.files[0]);
+    const [file] = e.target.files;
+    // Get the file name and size
+    const { name: fileName, size } = file;
+    // Convert size in bytes to kilo bytes
+    const fileSize = (size / 1000).toFixed(2);
+    const uploadedPhoto = `${fileName}-${fileSize}kb`;
+    setPhotoCaption(uploadedPhoto);
   };
 
   const handleSubmit = async (e) => {
@@ -63,25 +73,22 @@ function AddInterestGroup() {
             onChange={descriptionHandler}
           />
         </FormControl>
-        <Stack
-          spacing={2}
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <PhotoIcon />
-          <Typography variant="h2">Upload banner picture</Typography>
-          <FormControl sx={{
-            width: "200px", mx: "auto", textAlign: "center",
-          }}
-          >
-            <label htmlFor={photo}>
-              <input type="file" id={photo} name="photo" onChange={imageHandler} accept="image/*" />
+        <FormControl>
+          <div>
+            <label htmlFor="item-photo">
+              <AddAPhotoIcon color="primary" />
+              <input type="file" id="item-photo" name="item-photo" className="file" onChange={imageHandler} accept="image/*" />
+              <br />
+              <Typography variant="caption">{photoCaption}</Typography>
             </label>
-          </FormControl>
-          <Button variant="contained" onClick={handleSubmit}>Submit</Button>
-        </Stack>
+          </div>
+
+        </FormControl>
       </CardContent>
+      <CardActions>
+        <Button variant="contained" onClick={handleSubmit} sx={{ mx: "auto" }}>Submit</Button>
+      </CardActions>
+
     </Card>
   );
 }

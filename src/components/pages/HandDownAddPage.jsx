@@ -16,6 +16,7 @@ export default function HandDownAddPage() {
     <div className="mobile">
       <Stack
         direction="row"
+        alignItems="center"
       >
         <BackIcon onClick={goBack} />
         <Typography variant="h1">
