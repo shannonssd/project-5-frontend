@@ -83,7 +83,7 @@ export default function Post({ post, isFollowed }) {
             <Stack
               id="userdetails"
               direction="row"
-              spacing={1}
+              spacing={2}
               alignItems="center"
             >
               <Typography variant="h2">{post.postedBy}</Typography>
@@ -100,13 +100,10 @@ export default function Post({ post, isFollowed }) {
               alignItems="center"
             >
               {!loading && (
-              <Stack
-                direction="row"
-                alignItems="center"
-              >
+              <div>
                 <IconButton onClick={() => { likePost(post._id); }}><FavoriteIcon /></IconButton>
                 <Typography variant="body1">{likes}</Typography>
-              </Stack>
+              </div>
               )}
             </Stack>
           )}
