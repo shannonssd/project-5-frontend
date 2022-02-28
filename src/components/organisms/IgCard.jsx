@@ -5,8 +5,6 @@ import {
   Stack, Typography, Card, CardMedia, IconButton,
 } from '@mui/material';
 
-import mainTheme from '../../theme';
-
 export default function IgCard({
   image, header, handleButton, buttonIcon, handleView,
 }) {
@@ -19,18 +17,18 @@ export default function IgCard({
 
     >
 
-      <CardMedia onClick={handleView} component="img" image={image} alt={image.toString()} height="130" />
+      <CardMedia onClick={handleView} component="img" image={image} alt={image.toString()} height="100" />
 
       <Stack
-        spacing={1}
+        spacing={0}
         direction="column"
         alignItems="center"
         justifyContent="center"
-        padding={1}
+        px={0.5}
       >
-
-        <Typography variant="h2" sx={{ textAlign: "center" }}>{header}</Typography>
         <IconButton onClick={handleButton}>{buttonIcon}</IconButton>
+        <Typography variant="h2" sx={{ textAlign: "center" }}>{header}</Typography>
+
       </Stack>
 
     </Card>

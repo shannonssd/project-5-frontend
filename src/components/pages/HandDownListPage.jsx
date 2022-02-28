@@ -3,8 +3,9 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import {
-  Grid, Typography, Stack, IconButton,
+  Typography, Stack, IconButton, Box,
 } from '@mui/material';
+import { Masonry } from '@mui/lab/';
 import FolderIcon from '@mui/icons-material/Folder';
 import ItemCard from '../organisms/ItemCard';
 import { useAuthContext } from "../others/store";
@@ -82,22 +83,25 @@ export default function HandDownListPage({ setChosenItem }) {
 
       {!loading
        && (
-       <Grid
-         container
-         spacing={2}
-         sx={{
-           height: "470px", overflow: "scroll", mt: "10px", p: "3px",
+         <Box sx={{
+           height: "540px",
+           overflow: "auto",
          }}
-       >
-         {itemList.map((item) => (
-           <Grid item xs={6}>
-             <ItemCard
-               item={item}
-               setChosenItem={setChosenItem}
-             />
-           </Grid>
-         ))}
-       </Grid>
+         >
+           <Masonry
+             columns={2}
+             spacing={2}
+             sx={{ mx: 'auto' }}
+           >
+             {itemList.map((item) => (
+               <ItemCard
+                 item={item}
+                 setChosenItem={setChosenItem}
+               />
+
+             ))}
+           </Masonry>
+         </Box>
        )}
 
       <BottomBar>
