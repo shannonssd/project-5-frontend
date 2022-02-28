@@ -56,6 +56,7 @@ export default function HomePage() {
           spacing={1}
           marginTop="20px"
         >
+          <br />
           <Typography variant="h2" sx={{ color: mainTheme.palette.primary.main }}>
             Hello
             <br />
@@ -71,6 +72,8 @@ export default function HomePage() {
           <br />
         </Stack>
       </Stack>
+      <br />
+      <br />
       <Grid container spacing={2}>
         <Grid item xs={6}>
           <MenuCard icon={<ChatIcon />} header="Chat" onClick={goChat} />

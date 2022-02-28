@@ -23,7 +23,7 @@ const mainTheme = createTheme(
         fontSize: 24,
         textTransform: 'uppercase',
         letterSpacing: '0.02857em',
-        fontWeight: 500,
+        fontWeight: 700,
       },
       h2: {
         fontSize: 14,
