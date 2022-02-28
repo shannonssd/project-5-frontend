@@ -29,7 +29,6 @@ function Form() {
 
   const imageHandler = (e) => {
     setPhoto(e.target.files[0]);
-    console.log(e.target.files);
     const [file] = e.target.files;
     // Get the file name and size
     const { name: fileName, size } = file;

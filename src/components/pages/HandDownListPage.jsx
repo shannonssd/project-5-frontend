@@ -106,7 +106,7 @@ export default function HandDownListPage({ setChosenItem }) {
 
       <BottomBar>
         <NavMenu />
-        <IconButton onClick={() => history.push('/hmd-user')}><FolderIcon /></IconButton>
+        <IconButton onClick={() => history.push('/hmd-user')}><FolderIcon color="primary" /></IconButton>
         <AddIcon onClick={addItem} />
 
       </BottomBar>
