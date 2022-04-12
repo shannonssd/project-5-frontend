@@ -1,3 +1,12 @@
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                       Imports
+ *
+ * ========================================================
+ * ========================================================
+ */
 import React, { useState } from 'react';
 import {
   Card, CardContent, CardActions, Button, TextField, FormControl, Typography,
@@ -6,6 +15,15 @@ import { useHistory } from 'react-router-dom';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import axios from 'axios';
 
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                Component for Form
+ *
+ * ========================================================
+ * ========================================================
+ */
 function Form() {
   const [itemName, setItemName] = useState(null);
   const [description, setDescription] = useState(null);
@@ -50,7 +68,6 @@ function Form() {
     if (res.data.message) {
       history.push('/hmd-user');
     }
-    console.log('<=== axios result ===>', res.data);
   };
 
   return (

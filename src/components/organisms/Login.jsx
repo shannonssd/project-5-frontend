@@ -9,7 +9,6 @@
  */
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
 import {
   CardContent, Button, TextField, Stack,
 } from '@mui/material';
@@ -20,7 +19,7 @@ import { loginUser, useAuthContext } from "../others/store";
  * ========================================================
  * ========================================================
  *
- *       Component for login
+ *                  Component for login
  *
  * ========================================================
  * ========================================================
@@ -51,7 +50,6 @@ export default function Login() {
       if (!res.currentUser) setError(true);
       history.push('/home');
     } catch (err) {
-      console.log(err);
       setError(true);
     }
   };

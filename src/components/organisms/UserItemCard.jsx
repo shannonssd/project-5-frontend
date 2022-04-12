@@ -1,17 +1,21 @@
 /* eslint-disable no-underscore-dangle */
+// eslint-disable-next-line object-curly-newline
 
 /*
  * ========================================================
+ * ========================================================
+ *
  *                       Imports
+ *
+ * ========================================================
  * ========================================================
  */
-
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-
-// eslint-disable-next-line object-curly-newline
-import { Card, CardContent, CardMedia, Typography, Stack, IconButton } from "@mui/material";
+import {
+  Card, CardContent, CardMedia, Typography, Stack, IconButton,
+} from "@mui/material";
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import { useAuthContext } from "../others/store";
 
@@ -21,24 +25,15 @@ import { useAuthContext } from "../others/store";
  * ========================================================
  */
 export default function UserItemCard({
-  item, setChosenItem,
+  item,
 }) {
-  console.log('<== item ==>', item);
   const history = useHistory();
   const { state } = useAuthContext();
   const { userId } = state;
-  console.log('<== auth context ==>', useAuthContext());
-
-  // Event handler when user clicks on item card
-  // const handleClick = async () => {
-  //   setChosenItem(item);
-  //   history.push('/hmd-user-detail');
-  // };
 
   const handleDelete = async (e) => {
     e.preventDefault();
     const data = { userId, itemId: item._id };
-    console.log('<== data ==>', data);
     const res = axios.delete(`${process.env.REACT_APP_BACKEND_URL}/hand-me-downs/remove-item`, { data });
     history.go(0);
   };
@@ -51,7 +46,6 @@ export default function UserItemCard({
 
     >
       <CardContent>
-
         <Stack
           direction="column"
           alignItems="center"

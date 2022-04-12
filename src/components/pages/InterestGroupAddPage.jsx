@@ -1,9 +1,27 @@
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                       Imports
+ *
+ * ========================================================
+ * ========================================================
+ */
 import React from 'react';
 import { Stack, Typography } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import AddInterestGroup from '../organisms/AddInterestGroup';
 import BackIcon from '../molecules/BackIcon';
 
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *             Component for InterestGroupAddPage
+ *
+ * ========================================================
+ * ========================================================
+ */
 function InterestGroupAddPage() {
   const history = useHistory();
   const goBack = () => {

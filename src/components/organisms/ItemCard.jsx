@@ -1,27 +1,33 @@
 /* eslint-disable no-underscore-dangle */
-
+// eslint-disable-next-line object-curly-newline
 /*
  * ========================================================
+ * ========================================================
+ *
  *                       Imports
+ *
+ * ========================================================
  * ========================================================
  */
-
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-
-// eslint-disable-next-line object-curly-newline
-import { Card, CardContent, CardMedia, Typography, Avatar, Stack } from "@mui/material";
+import {
+  Card, CardContent, CardMedia, Typography, Avatar, Stack,
+} from "@mui/material";
 
 /*
  * ========================================================
- *                       Component
+ * ========================================================
+ *
+ *                Component for ItemCard
+ *
+ * ========================================================
  * ========================================================
  */
 export default function ItemCard({
   item, setChosenItem,
 }) {
   const history = useHistory();
-  console.log('<== item ==>', item);
 
   // Event handler when user clicks on item card
   const handleClick = async () => {

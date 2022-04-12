@@ -1,3 +1,12 @@
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                       Imports
+ *
+ * ========================================================
+ * ========================================================
+ */
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import {
@@ -8,12 +17,18 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import PersonIcon from '@mui/icons-material/Person';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import HomeIcon from '@mui/icons-material/Home';
-import PhotoIcon from '@mui/icons-material/Photo';
 import { signupUser, useAuthContext } from "../others/store";
-// import BackIcon from "../atoms/BackIcon";
 
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                Component for Signup
+ *
+ * ========================================================
+ * ========================================================
+ */
 function Signup() {
-  // const [step, setStep] = useState(0);
   const [activeStep, setActiveStep] = useState(0);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -77,11 +92,9 @@ function Signup() {
     payload.append('photo', photo);
     try {
       const res = await signupUser(dispatch, payload);
-      console.log('<== sign up res data ==>', res.data);
       if (!res.success) setError(true);
       history.go(0);
     } catch (err) {
-      console.log(err);
       setError(true);
     }
   };

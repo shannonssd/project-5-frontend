@@ -1,5 +1,14 @@
 /* eslint-disable max-len */
 /* eslint-disable no-underscore-dangle */
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                       Imports
+ *
+ * ========================================================
+ * ========================================================
+ */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
@@ -7,12 +16,20 @@ import { Stack, Typography } from "@mui/material";
 import ChatRow from "../molecules/ChatRow";
 import BackIcon from "../molecules/BackIcon";
 
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *             Component for ChatListPage
+ *
+ * ========================================================
+ * ========================================================
+ */
 export default function ChatListPage() {
   const [chatList, setChatList] = useState();
   const history = useHistory();
 
   const goChatRoom = (id) => {
-    console.log('I NEED THIS ID', id);
     history.push('/chat-room', { params: id });
   };
 
@@ -29,7 +46,6 @@ export default function ChatListPage() {
       .then((response) => {
         // Output textee list from received data
         const uniqueTexteeIdArr = response.data.texteeData;
-        console.log("<== user ==>", uniqueTexteeIdArr);
         const chatListArr = uniqueTexteeIdArr.map((user) => (
           <ChatRow
             onClick={() => goChatRoom(user._id)}

@@ -1,8 +1,26 @@
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                       Imports
+ *
+ * ========================================================
+ * ========================================================
+ */
 import React from 'react';
 import { Paper, IconButton, InputBase } from "@mui/material";
 import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import NavMenu from '../organisms/NavMenu';
 
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                Component for MessageInput
+ *
+ * ========================================================
+ * ========================================================
+ */
 function MessageInput({ id, handleInput, handleSend }) {
   return (
     <Paper sx={{

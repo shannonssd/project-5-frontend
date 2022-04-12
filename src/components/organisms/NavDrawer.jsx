@@ -9,7 +9,6 @@
  */
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import Box from '@mui/material/Box';
 import {
   List, ListItem, ListItemIcon, ListItemText, Divider, Drawer, Button,
 } from '@mui/material';
@@ -24,7 +23,7 @@ import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
  * ========================================================
  * ========================================================
  *
- *       Component for nav drawer
+ *                Component for nav drawer
  *
  * ========================================================
  * ========================================================

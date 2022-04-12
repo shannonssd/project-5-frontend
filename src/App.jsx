@@ -1,6 +1,10 @@
 /*
  * ========================================================
+ * ========================================================
+ *
  *                       Imports
+ *
+ * ========================================================
  * ========================================================
  */
 import "./App.css";
@@ -9,7 +13,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
 } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import mainTheme from "./theme";
@@ -30,11 +33,14 @@ import InterestGroupAddPage from "./components/pages/InterestGroupAddPage";
 import HandMeDownUserPage from "./components/pages/HandMeDownUserPage";
 
 /*
-* ========================================================
-*                       App
-* ========================================================
-*/
-
+ * ========================================================
+ * ========================================================
+ *
+ *                Component for App
+ *
+ * ========================================================
+ * ========================================================
+ */
 export default function App() {
   const [chosenItem, setChosenItem] = useState(null);
 
