@@ -62,4 +62,88 @@ NEIGHBOURLY is a community app that builds a greater sense of belonging amongst 
   
   ![ig_add](https://user-images.githubusercontent.com/85098526/162904006-2dc6e2bd-4939-4902-8854-552a1ff6b60d.gif)
 
+ <h3>Accessibility</h3>
+ <ul>
+  <li>Navigate from one page to another easily with menu buttons throughout app</li>
+ </ul>
+ 
+ ![accessibility](https://user-images.githubusercontent.com/85098526/162932480-abd07b16-a7dd-43e7-8d4a-6d8e911f9906.gif)
 
+ 
+<div id="tech-used">
+<h2> Technologies Used </h2>
+ 
+ <h3>Frontend</h3>
+ 
+ User Interface:
+ <ul>
+  <li><a href="https://reactjs.org/" target="_blank"> React.js <a/></li>
+ </ul>
+ 
+  Component Routing:
+ <ul>
+  <li><a href="https://reactrouter.com/" target="_blank"> React Router <a/></li>
+ </ul>
+ 
+ CSS Framework:
+ <ul>
+  <li><a href="https://mui.com/" target="_blank"> Material UI <a/></li> 
+ </ul>
+ 
+ Live Chatroom:
+ <ul>
+   <li><a href="https://socket.io/" target="_blank"> Socket.IO <a/></li>
+ </ul>
+ 
+ <h3> Backend </h3>
+ 
+ Server:
+ <ul>
+   <li><a href="https://expressjs.com/" target="_blank"> Express.js <a/></li>
+ </ul>
+ 
+  Database:
+ <ul>
+   <li><a href="https://www.mongodb.com/docs/atlas/" target="_blank"> MongoDB Atlas <a/></li> 
+   <li><a href="https://mongoosejs.com/" target="_blank"> Mongoose ODM <a/></li>
+ </ul>
+ 
+   Authentication:
+ <ul>
+   <li><a href="https://jwt.io/" target="_blank"> JSON Web Token <a/></li>
+ </ul>
+ 
+ 
+  Live Chatroom:
+ <ul>
+   <li><a href="https://socket.io/" target="_blank"> Socket.IO <a/></li>
+ </ul>
+ 
+</div>
+
+<div id="rationale">
+<h2> Rationale for Choice of Technologies  </h2>
+
+<h3> MongoDB </h3>
+ <b>Reason for Choosing a NoSQL Database: </b>
+<ul>
+ <li> Due to a short development time, we required a flexible schema that would allow us to make changes quickly and easily as requirements changed </li>
+ <li> The size and complexity of the app meant that a lot of information was being accessed by the various components. <br/> This would have required multiple join tables if a SQL database was used. <br/> MongoDB allowed us to embed information, allowing for ease of storage and access of data.<br/> Since we had sets of data which needed to be queried alongside one another, a NoSQL database was better suited as it removed the need for multiple queries and joins. </li>
+</ul>
+</div>
+
+<div id="repo-links">
+<h2> Repo Links  </h2>
+
+ <ul>
+  <li><a href="https://github.com/shannonssd/project-5-frontend" target="_blank"> Frontend<a/></li>
+   <li><a href="https://github.com/shannonssd/project-5-backend" target="_blank"> Backend<a/></li>
+ </ul>
+ 
+</div>
+
+<h2 id="contributors"> Contributors </h2>
+
+Hsiu Ping Gay | <a href="https://www.linkedin.com/in/hsiupinggay" target="_blank"> LinkedIn<a/>
+
+Shannon Suresh | <a href="https://www.linkedin.com/in/shannon-suresh" target="_blank"> LinkedIn<a/>
