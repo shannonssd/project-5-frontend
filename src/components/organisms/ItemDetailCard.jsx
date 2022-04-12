@@ -1,13 +1,15 @@
 /* eslint-disable max-len */
 /*
  * ========================================================
+ * ========================================================
+ *
  *                       Imports
+ *
+ * ========================================================
  * ========================================================
  */
-
 import React from 'react';
 import { useHistory } from "react-router-dom";
-
 import {
   Card, CardContent, CardMedia, Typography, Stack, Avatar, Button, CardActions,
 } from '@mui/material';
@@ -15,7 +17,11 @@ import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 
 /*
  * ========================================================
- *                       Component
+ * ========================================================
+ *
+ *              Component for ItemDetailCard
+ *
+ * ========================================================
  * ========================================================
  */
 export default function ItemDetailCard({ chosenItem }) {

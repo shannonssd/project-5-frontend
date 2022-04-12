@@ -2,6 +2,15 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable max-len */
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                       Imports
+ *
+ * ========================================================
+ * ========================================================
+ */
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
@@ -14,8 +23,16 @@ import NavMenu from "../organisms/NavMenu";
 import AddIcon from "../molecules/AddIcon";
 import BackIcon from "../molecules/BackIcon";
 import IgCard from "../organisms/IgCard";
-import IgCardContainer from "../molecules/IgCardContainer";
 
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *           Component for InterestGroupListPage
+ *
+ * ========================================================
+ * ========================================================
+ */
 export default function InterestGroupListPage() {
   const [followedGrps, setFollowedGrps] = useState();
   const [unfollowedGrps, setUnfollowedGrps] = useState();
@@ -26,7 +43,6 @@ export default function InterestGroupListPage() {
   const { userId, district } = state;
 
   const displayIntGrps = (districtInterestGroups) => {
-    console.log('districtInterestGroups', districtInterestGroups);
     const followedGrpsArr = [];
     const notFollowedGrpsArr = [];
     for (let i = 0; i < districtInterestGroups.length; i += 1) {
@@ -102,7 +118,6 @@ export default function InterestGroupListPage() {
 
       const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/interest-group/show-groups?${query.toString()}`);
       const { districtInterestGroups, usersInterestGroups } = res.data;
-      console.log('<== res.data items array ajax ==>', districtInterestGroups, usersInterestGroups);
       displayIntGrps(districtInterestGroups);
     }
     loadIntGrpList();

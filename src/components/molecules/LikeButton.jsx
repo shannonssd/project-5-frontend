@@ -1,9 +1,27 @@
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                       Imports
+ *
+ * ========================================================
+ * ========================================================
+ */
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import { Rating } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                   StyledRating CSS
+ *
+ * ========================================================
+ * ========================================================
+ */
 const StyledRating = styled(Rating)({
   '& .MuiRating-iconFilled': {
     color: '#ff6d75',
@@ -13,6 +31,15 @@ const StyledRating = styled(Rating)({
   },
 });
 
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                Component for LikeButton
+ *
+ * ========================================================
+ * ========================================================
+ */
 export default function LikeButton({ onClick, liked }) {
   return (
     <StyledRating

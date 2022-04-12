@@ -1,3 +1,12 @@
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                       Imports
+ *
+ * ========================================================
+ * ========================================================
+ */
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
@@ -11,6 +20,15 @@ import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import { logout, useAuthContext } from "../others/store";
 
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                Component for NavOptions
+ *
+ * ========================================================
+ * ========================================================
+ */
 function NavOptions() {
   const history = useHistory();
   const { dispatch } = useAuthContext();

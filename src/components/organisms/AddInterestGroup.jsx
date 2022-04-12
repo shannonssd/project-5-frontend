@@ -1,14 +1,31 @@
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                       Imports
+ *
+ * ========================================================
+ * ========================================================
+ */
 import React, { useState } from 'react';
 import {
-  Card, CardContent, Typography, Button, TextField, FormControl, Stack, CardActions,
+  Card, CardContent, Typography, Button, TextField, FormControl, CardActions,
 } from '@mui/material';
 import PhotoIcon from '@mui/icons-material/Photo';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { useAuthContext } from "../others/store";
-import Form from './Form';
 
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                Component for AddInterestGroup
+ *
+ * ========================================================
+ * ========================================================
+ */
 function AddInterestGroup() {
   const { state } = useAuthContext();
   const { name, userId, district } = state;
@@ -88,7 +105,6 @@ function AddInterestGroup() {
       <CardActions>
         <Button variant="contained" onClick={handleSubmit} sx={{ mx: "auto" }}>Submit</Button>
       </CardActions>
-
     </Card>
   );
 }

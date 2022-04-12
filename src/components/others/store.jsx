@@ -16,31 +16,6 @@ import { useHistory } from "react-router-dom";
  * ========================================================
  * ========================================================
  *
- *                Actions for useReducer
- *
- * ========================================================
- * ========================================================
- */
-
-/*
- * ========================================================
- * ========================================================
- *
- *                  Get User Details + token
- *
- * ========================================================
- * ========================================================
- */
-// const userId = localStorage.getItem('userId');
-// const name = localStorage.getItem('name');
-// const displayAddress = localStorage.getItem('displayAddress');
-// const district = localStorage.getItem('district');
-// const token = localStorage.getItem('token');
-
-/*
- * ========================================================
- * ========================================================
- *
  *             Initial State for useReducer
  *
  * ========================================================
@@ -139,7 +114,6 @@ export async function loginUser(dispatch, loginPayload) {
     const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/users/login?${loginPayload.toString()}`);
 
     if (res.data.success) {
-      console.log('LOGIN DATA', res.data);
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
       localStorage.setItem('userId', res.data.userId);
       localStorage.setItem('name', res.data.name);
@@ -163,7 +137,6 @@ export async function loginUser(dispatch, loginPayload) {
 
 export async function signupUser(dispatch, signupPayload) {
   dispatch({ type: REQUEST_SIGNUP });
-  console.log('<== sign up dispatched ==>');
   const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/users/signup`, signupPayload);
   return res;
 }
@@ -199,13 +172,10 @@ export async function authenticateUser(dispatch) {
  * ========================================================
  * ========================================================
  */
-
 // Create context
 export const AuthContext = React.createContext();
-// export const AuthDispatchContext = React.createContext();
 
 // Initiate custom hooks for useContext
-
 export function useAuthContext() {
   const context = React.useContext(AuthContext);
   if (context === undefined) {

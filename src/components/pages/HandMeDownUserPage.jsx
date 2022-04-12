@@ -1,4 +1,13 @@
 /* eslint-disable no-underscore-dangle */
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                       Imports
+ *
+ * ========================================================
+ * ========================================================
+ */
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
@@ -12,11 +21,19 @@ import BottomBar from '../molecules/BottomBar';
 import AddIcon from '../molecules/AddIcon';
 import NavMenu from "../organisms/NavMenu";
 
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *             Component for HandMeDownUserPage
+ *
+ * ========================================================
+ * ========================================================
+ */
 function HandMeDownUserPage({ setChosenItem }) {
   const { state } = useAuthContext();
   const { userId } = state;
   const [loading, setLoading] = useState(true);
-  console.log('<== auth context ==>', useAuthContext());
   const [userItems, setUserItems] = useState(null);
   const history = useHistory();
 
@@ -27,23 +44,11 @@ function HandMeDownUserPage({ setChosenItem }) {
 
       const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hand-me-downs/show-users-items?${query.toString()}`);
       const { itemsArr } = res.data;
-      console.log('<== res data user items ==>', res.data);
       setUserItems(itemsArr);
       setLoading(false);
     }
     loadUserItems();
   }, []);
-
-  // if (!loading) {
-  //   const userItemCards = userItems.map((item) => (
-  //     <Grid item xs={6}>
-  //       <UserItemCard
-  //         key={item._id}
-  //         item={item}
-  //         setChosenItem={setChosenItem}
-  //       />
-  //     </Grid>
-  //   )); }
 
   const addItem = () => {
     history.push('/hmd-add');

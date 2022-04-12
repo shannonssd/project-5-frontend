@@ -1,17 +1,34 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable max-len */
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                       Imports
+ *
+ * ========================================================
+ * ========================================================
+ */
 import React, { useState, useEffect } from "react";
 import io from 'socket.io-client';
 import { useHistory, useLocation } from "react-router-dom";
 import {
-  Avatar, Typography, Stack, IconButton, InputBase, Paper,
+  Avatar, Typography, Stack,
 } from "@mui/material";
-import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import BackIcon from "../molecules/BackIcon";
 import TexterBubble from "../molecules/TexterBubble";
 import TexteeBubble from "../molecules/TexteeBubble";
 import MessageInput from "../molecules/MessageInput";
 
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *             Component for ChatRoomPage
+ *
+ * ========================================================
+ * ========================================================
+ */
 export default function ChatRoomPage() {
   // Establish socket connection upon entering room
   const socket = io.connect(`${process.env.REACT_APP_BACKEND_URL}`);
@@ -69,6 +86,11 @@ export default function ChatRoomPage() {
       });
     });
 
+    // Display latest conversation once received
+    socket.on('Latest conversation', (allMessages) => {
+      convertMessageArrToConverastion(allMessages.allMessages);
+    });
+
     // If user leaves chat room, disconnect from socket so that their document is removed from Online Chat collection
     return () => {
       socket.disconnect();
@@ -91,7 +113,6 @@ export default function ChatRoomPage() {
 
     // Display latest conversation once received
     socket.on('Latest conversation', (allMessages) => {
-      console.log('MESSAGE RECEIVED');
       convertMessageArrToConverastion(allMessages.allMessages);
     });
   };

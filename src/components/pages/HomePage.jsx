@@ -1,7 +1,16 @@
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                       Imports
+ *
+ * ========================================================
+ * ========================================================
+ */
 import {
   Grid, Stack, Typography, Avatar,
 } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import ChatIcon from '@mui/icons-material/Chat';
 import InterestsIcon from '@mui/icons-material/Interests';
@@ -12,6 +21,15 @@ import { useAuthContext } from "../others/store";
 import mainTheme from '../../theme';
 import NavMenu from "../organisms/NavMenu";
 
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *             Component for HomePage
+ *
+ * ========================================================
+ * ========================================================
+ */
 export default function HomePage() {
   const history = useHistory();
   const { state } = useAuthContext();
@@ -19,7 +37,6 @@ export default function HomePage() {
   const {
     name, district, photo,
   } = state;
-  console.log('<== photo ==>', photo);
   const goChat = () => {
     history.push('/chat-list');
   };

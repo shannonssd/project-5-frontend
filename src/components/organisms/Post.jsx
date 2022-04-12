@@ -11,14 +11,12 @@
  * ========================================================
  */
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import {
-  Avatar, Divider, Grid, IconButton, Stack, Typography,
+  Avatar, Grid, IconButton, Stack, Typography,
 } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useAuthContext } from "../others/store";
-import LikeButton from '../molecules/LikeButton';
 
 /*
  * ========================================================
@@ -35,15 +33,13 @@ export default function Post({ post, isFollowed }) {
   const [loading, setLoading] = useState(true);
   const { state } = useAuthContext();
   const { userId } = state;
-  const history = useHistory();
 
   useEffect(() => {
     if (post.likedBy !== undefined) {
       setLikes(post.likedBy.length);
-      console.log("<== no. of likes ==>", likes); }
+    }
     setLoading(false);
   }, []);
-  console.log('<== outside useEffect liked by ==>', post.likedBy);
 
   const likePost = async (id) => {
     setLoading(true);
@@ -52,8 +48,6 @@ export default function Post({ post, isFollowed }) {
       postId: id,
     };
     const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/interest-group/like-post`, data);
-    console.log("<3 post liked res.data <3", res.data);
-    // setLikes(res.data.newPostsArr.length);
     const { isRemoved } = res.data;
     if (isRemoved) {
       setLikes((prevLikes) => prevLikes - 1);

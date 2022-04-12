@@ -13,9 +13,8 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import axios from 'axios';
 import {
-  Stack, Typography, CardMedia, IconButton, Paper, InputBase, Grid,
+  Stack, Typography, CardMedia, IconButton, Grid,
 } from "@mui/material";
-import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import AdminPanelSettingsRoundedIcon from '@mui/icons-material/AdminPanelSettingsRounded';
 import { useAuthContext } from "../others/store";
@@ -40,13 +39,11 @@ export default function InterestGroupDetailPage() {
 
   // Get interest group data from previous component
   const groupData = location.state.params;
-  console.log('groupData', groupData);
   // authContext contains object with userId, name, displayAddress, district, token
   const { state } = useAuthContext();
   const {
     name, photo, displayAddress, userId,
   } = state;
-  console.log('CONTEXT INSIDE OF IG PAGE', name, photo, displayAddress);
 
   const currentMembers = groupData.members;
   let isFollowed = false;
@@ -55,8 +52,6 @@ export default function InterestGroupDetailPage() {
       isFollowed = true;
     }
   }
-  console.log('ARE YOU EVEN FOLLOWING', isFollowed);
-  console.log('membs', currentMembers);
   const goBack = () => {
     history.push('/interest-group-list');
   };
@@ -84,7 +79,6 @@ export default function InterestGroupDetailPage() {
       post,
       interestGrpId: groupData._id,
     };
-    console.log('DATAAAA', data);
 
     axios.post(`${process.env.REACT_APP_BACKEND_URL}/interest-group/new-post`, data)
       .then((response) => {

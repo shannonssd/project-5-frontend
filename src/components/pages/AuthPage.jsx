@@ -9,7 +9,7 @@
  */
 import React, { useState } from "react";
 import {
-  Box, Tab, Tabs, Typography, Card, CardContent, Stack,
+  Box, Tab, Tabs, Card,
 } from '@mui/material';
 import Login from "../organisms/Login";
 import Signup from "../organisms/Signup";
@@ -18,7 +18,7 @@ import Signup from "../organisms/Signup";
  * ========================================================
  * ========================================================
  *
- *                  Component for Auth Page
+ *                Component for Auth Page
  *
  * ========================================================
  * ========================================================

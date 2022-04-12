@@ -1,10 +1,27 @@
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                       Imports
+ *
+ * ========================================================
+ * ========================================================
+ */
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Box, styled } from '@mui/system';
 import {
   Stack, Typography, Card, CardMedia, IconButton,
 } from '@mui/material';
 
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                Component for IgCard
+ *
+ * ========================================================
+ * ========================================================
+ */
 export default function IgCard({
   image, header, handleButton, buttonIcon, handleView,
 }) {
@@ -28,9 +45,7 @@ export default function IgCard({
       >
         <IconButton onClick={handleButton}>{buttonIcon}</IconButton>
         <Typography variant="h2" sx={{ textAlign: "center" }}>{header}</Typography>
-
       </Stack>
-
     </Card>
   );
 }

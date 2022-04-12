@@ -1,4 +1,13 @@
 /* eslint-disable no-underscore-dangle */
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *                       Imports
+ *
+ * ========================================================
+ * ========================================================
+ */
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
@@ -14,6 +23,15 @@ import AddIcon from '../molecules/AddIcon';
 import NavMenu from "../organisms/NavMenu";
 import BottomBar from "../molecules/BottomBar";
 
+/*
+ * ========================================================
+ * ========================================================
+ *
+ *             Component for HandDownListPage
+ *
+ * ========================================================
+ * ========================================================
+ */
 export default function HandDownListPage({ setChosenItem }) {
   const [itemList, setItemList] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -23,7 +41,6 @@ export default function HandDownListPage({ setChosenItem }) {
   // state is an object with userId, name, displayAddress, district, token
   const { state } = useAuthContext();
   const { name, userId, district } = state;
-  console.log('<== auth context name ==>', name);
 
   useEffect(() => {
     async function loadItemList() {
@@ -34,7 +51,6 @@ export default function HandDownListPage({ setChosenItem }) {
       const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/hand-me-downs/show-all-items?${query.toString()}`);
 
       const { itemsArr } = res.data;
-      console.log('<== res.data items array ajax ==>', itemsArr);
 
       let items = [];
       for (let i = 0; i < itemsArr.length; i += 1) {
@@ -49,12 +65,10 @@ export default function HandDownListPage({ setChosenItem }) {
           itemsArr[i].handMeDowns[j].sellerAddress = sellerAddress;
         }
         const temp = itemsArr[i].handMeDowns;
-        console.log('<== temp array ==>', temp);
         items = items.concat(temp);
       }
       setItemList(items);
       setLoading(false);
-      console.log('<== items ==>', items);
     }
 
     loadItemList();
@@ -108,7 +122,6 @@ export default function HandDownListPage({ setChosenItem }) {
         <NavMenu />
         <IconButton onClick={() => history.push('/hmd-user')}><FolderIcon color="primary" /></IconButton>
         <AddIcon onClick={addItem} />
-
       </BottomBar>
     </div>
   );
