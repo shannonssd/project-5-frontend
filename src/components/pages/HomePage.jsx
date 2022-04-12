@@ -49,10 +49,6 @@ export default function HomePage() {
     history.push('/interest-group-list');
   };
 
-  const signOut = () => {
-    history.push('/');
-  };
-
   return (
     <div className="mobile">
       <Stack

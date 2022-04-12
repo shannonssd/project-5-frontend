@@ -153,6 +153,7 @@ export function logout(dispatch) {
 
 export async function authenticateUser(dispatch) {
   dispatch({ type: AUTHENTICATE });
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const history = useHistory();
   const token = localStorage.getItem('token');
   if (!token) {
