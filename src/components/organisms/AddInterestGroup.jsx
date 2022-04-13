@@ -11,7 +11,6 @@ import React, { useState } from 'react';
 import {
   Card, CardContent, Typography, Button, TextField, FormControl, CardActions,
 } from '@mui/material';
-import PhotoIcon from '@mui/icons-material/Photo';
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';

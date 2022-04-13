@@ -10,7 +10,7 @@
  * ========================================================
  * ========================================================
  */
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import {
@@ -34,7 +34,7 @@ export default function UserItemCard({
   const handleDelete = async (e) => {
     e.preventDefault();
     const data = { userId, itemId: item._id };
-    const res = axios.delete(`${process.env.REACT_APP_BACKEND_URL}/hand-me-downs/remove-item`, { data });
+    axios.delete(`${process.env.REACT_APP_BACKEND_URL}/hand-me-downs/remove-item`, { data });
     history.go(0);
   };
 

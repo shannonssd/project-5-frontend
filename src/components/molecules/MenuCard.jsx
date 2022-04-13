@@ -9,7 +9,7 @@
  */
 import React from 'react';
 import { styled } from '@mui/system';
-import { Stack, Typography, Box } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import mainTheme from '../../theme';
 
 /*
