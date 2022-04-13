@@ -95,7 +95,8 @@
  </ol>
 </details>
  
-![Apr-13-2022 15-46-10](https://user-images.githubusercontent.com/83911483/163126246-d51cd82b-f4cf-4769-93e1-d57099513e18.gif)
+![Apr-13-2022 17-00-34](https://user-images.githubusercontent.com/83911483/163140605-2977b93b-bc50-42d8-8a7a-95891d6e259d.gif)
+
  
  <h3> 5. Accessibility</h3>
  <ul>
