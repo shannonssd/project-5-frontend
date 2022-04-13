@@ -28,7 +28,20 @@
 
 <h2 id="features"> Features </h2>
 
-<h3> 1. Give Away Pre-Owned Items </h3>
+<h3> 1. District-Based Communities </h3>
+ 
+ <ul>
+  <li>On signup, users are placed into a NEIGHBOURLY district based on the postal code entered.</li>
+  <li>The hand-me-down items, interest groups and neighbours they encounter will be unique to their district, thus providing a tight-knit community experience.
+  </ul>
+ 
+![Apr-13-2022 16-10-13](https://user-images.githubusercontent.com/83911483/163130815-8724b178-1618-4ec4-bb6c-17d20e6d356e.gif)
+
+![Apr-13-2022 16-10-43](https://user-images.githubusercontent.com/83911483/163130842-8233aa21-3dd0-4df9-b895-027022b9e2c0.gif)
+
+ 
+ 
+<h3> 2. Give Away Pre-Owned Items </h3>
    <ul>
    <li>
      Browse through the marketplace containing items that other users want to give away.</li>
@@ -45,7 +58,7 @@
   
   ![hmd_add_item](https://user-images.githubusercontent.com/85098526/162903967-5020cb53-e95d-47df-b02e-c86c5feb67a2.gif)
 
-  <h3> 2. Interact with Neighbours Through Interest Groups </h3>
+  <h3> 3. Interact with Neighbours Through Interest Groups </h3>
  <ul>
    <li>Browse through interest groups in your neighbourhood.</li>
    <li>Join interest groups to be to able like posts or see the full list of members.</li>
@@ -65,7 +78,7 @@
   
   ![ig_add](https://user-images.githubusercontent.com/85098526/162904006-2dc6e2bd-4939-4902-8854-552a1ff6b60d.gif)
  
-<h3> 3. Chat with Neighbours </h3>
+<h3> 4. Chat with Neighbours </h3>
  <ul>
   <li> Continue your conversation with neighbours.</li>
  </ul>
@@ -84,7 +97,7 @@
  
 ![Apr-13-2022 15-46-10](https://user-images.githubusercontent.com/83911483/163126246-d51cd82b-f4cf-4769-93e1-d57099513e18.gif)
  
- <h3> 4. Accessibility</h3>
+ <h3> 5. Accessibility</h3>
  <ul>
   <li> Easily navigate from one page to another with menu buttons throughout the app.</li>
  </ul>
