@@ -31,7 +31,7 @@
 <h3> 1. Give Away Pre-Owned Items </h3>
    <ul>
    <li>
-     Browse through marketplace containing items that other users want to give away.</li>
+     Browse through the marketplace containing items that other users want to give away.</li>
     <li>Chat with owners to find out more and arrange a pick-up.</li>
      </ul>
      
@@ -52,6 +52,13 @@
   </ul>
   
 ![ig_join_comment](https://user-images.githubusercontent.com/85098526/162904010-36454297-cbb5-404d-b1a1-27e726447b81.gif)
+ 
+  <ul>
+   <li> Start a conversation with interest group members.</li>
+ </ul>
+ 
+ ![Apr-13-2022 15-29-28](https://user-images.githubusercontent.com/83911483/163123308-39597797-a7bc-40c4-baf5-14457edb67e9.gif)
+ 
    <ul>
     <li> Start a new interest group.</li>
    </ul>
@@ -60,8 +67,22 @@
  
 <h3> 3. Chat with Neighbours </h3>
  <ul>
-  <li> ==============</li>
+  <li> Continue your conversation with neighbours.</li>
  </ul>
+ 
+ <details>
+<summary><i><b> How It Was Achieved: </b></i></summary>
+ <ol>
+  <li><b> Establish Socket Connection: </b><br/> When a user enters a chatroom, a socket connection is established in the Express server. 
+   <br/> The users socket ID, user ID and the user ID of the person they are texting is stored as a document in an <i>OnlineChatModel</i> collection in the database.
+  <br/> The user is then placed in a socket room (channel) named after their user ID.</li>
+  <li><b> Sending Real-Time Messages: </b><br/> When a user sends a message, the Express server will check the <i>OnlineChatModel</i> collection in the database to determine if the textee is also in the same chatroom.
+  <br/> If they are, the user joins the textees socket room and the message is emitted to both rooms and hence the user and the textee. <br/> If not, the message is only sent to the user.</li>
+  <li><b> Leaving Chatroom: </b><br/> When a user leaves the chatroom, their document is removed from the <i>OnlineChatModel</i> collection in the database, so as to allow for accurate checking of online users. </li>
+ </ol>
+</details>
+ 
+![Apr-13-2022 15-46-10](https://user-images.githubusercontent.com/83911483/163126246-d51cd82b-f4cf-4769-93e1-d57099513e18.gif)
  
  <h3> 4. Accessibility</h3>
  <ul>
@@ -69,7 +90,7 @@
  </ul>
  
  ![accessibility](https://user-images.githubusercontent.com/85098526/162932480-abd07b16-a7dd-43e7-8d4a-6d8e911f9906.gif)
-
+ 
  
 <div id="tech-used">
 <h2> Technologies Used </h2>
