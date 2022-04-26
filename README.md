@@ -23,7 +23,7 @@ NEIGHBOURLY is a community app that builds a greater sense of belonging amongst 
  
 <div id="website">
 <h2> Website </h2>
-<== to be deployed ==>
+www.neighbourlyapp.live
 </div>
 
 <h2 id="features"> Features </h2>
